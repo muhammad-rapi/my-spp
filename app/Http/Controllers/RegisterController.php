@@ -26,9 +26,9 @@ class RegisterController extends Controller
 
         
 
-        session()->flash('success', 'Your account has been created.');
+        session()->flash('success', 'Akun berhasil dibuat.');
         $user = User::create($attributes);
         Auth::login($user); 
-        return redirect('/dashboard');
+        return redirect('/login');
     }
 }
