@@ -51,8 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
 
 	
-	Route::get('/add-major', [MajorController::class, 'create']);
-	Route::post('/major', [MajorController::class, 'store']);
+	Route::get('/create-major', [MajorController::class, 'create']);
+	Route::post('/add-major', [MajorController::class, 'store']);
 	Route::get('/list-major', [MajorController::class, 'index']);
 	Route::get('/update-major/{id}', [MajorController::class, 'edit']);
 	Route::patch('/update-major/{id}', [MajorController::class, 'update']);
