@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -29,28 +30,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('dashboard', function () {
 		return view('dashboard');
 	})->name('dashboard');
-
-	Route::get('billing', function () {
-		return view('billing');
-	})->name('billing');
-
-	Route::get('profile', function () {
-		return view('profile');
-	})->name('profile');
-
-	Route::get('user-management', function () {
-		return view('laravel-examples/user-management');
-	})->name('user-management');
-
-	Route::get('tables', function () {
-		return view('tables');
-	})->name('tables');
-
+	
 	Route::get('/logout', [SessionsController::class, 'destroy']);
-	Route::get('/user-profile', [InfoUserController::class, 'create']);
-	Route::post('/user-profile', [InfoUserController::class, 'store']);
 
 	
+	// Major Series
 	Route::get('/create-major', [MajorController::class, 'create']);
 	Route::post('/add-major', [MajorController::class, 'store']);
 	Route::get('/list-major', [MajorController::class, 'index']);
@@ -58,6 +42,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::patch('/update-major/{id}', [MajorController::class, 'update']);
 	Route::delete('/delete-major/{id}', [MajorController::class, 'destroy']);
 	
+	// Student Series
+	Route::get('/create-student', [StudentController::class, 'create']);
+	Route::post('/add-student', [StudentController::class, 'store']);
+	Route::get('/list-student', [StudentController::class, 'index']);
+	Route::get('/student/{id}', [StudentController::class, 'show']);
+	Route::get('/update-student/{id}', [StudentController::class, 'edit']);
+	Route::patch('/update-student/{id}', [StudentController::class, 'update']);
+	Route::delete('/delete-student/{id}', [StudentController::class, 'destroy']);
 
 
 	Route::get('/login', function () {

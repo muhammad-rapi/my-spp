@@ -2,48 +2,72 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Major;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\View;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    
     public function index()
     {
-        //
+        $student = Student::all();
+        return view('students/list-student', [
+            'student' => $student,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('students/detail-student', [
+            'student' => $student
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function create()
+    {
+        $major = Major::all();
+        return view('students/add-student', ['major' => $major]);
+    }
+
+    public function store(Request $request)
+    {
+
+        $attributes = $request->validate([
+            'name'     => ['required', 'max:50'],
+            'major_id'     => ['required', 'max:50'],
+            'class' => ['required', 'max:50'],
+            'nis' => ['required', 'max:50'],
+            'address' => ['required', ],
+        ]);
+
+
+        Student::create([
+            'name'     => $attributes['name'],
+            'major_id' => $attributes['major_id'],
+            'class' => $attributes['class'],
+            'nis' => $attributes['nis'],
+            'address' => $attributes['address'],
+        ]);
+
+
+        return redirect('/list-student')->with('success', 'Siswa berhasil ditambah');
+    }
+
     public function edit(string $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $major = Major::all();
+        return view('students/edit-student', [
+            'major' => $major,
+            'student' => $student
+        ]);
     }
 
     /**
@@ -52,6 +76,26 @@ class StudentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $data = Student::findOrFail($id);
+        $attributes = $request->validate([
+            'name'     => ['required', 'max:50'],
+            'major_id' => ['required', 'max:50'],
+            'class'    => ['required', 'max:50'],
+            'nis'      => ['required', 'max:50'],
+            'address'  => ['required',],
+        ]);
+
+        $data->Update([
+            'name'     => $attributes['name'],
+            'major_id' => $attributes['major_id'],
+            'class'    => $attributes['class'],
+            'nis'      => $attributes['nis'],
+            'address'  => $attributes['address'],
+        ]);
+
+
+
+        return redirect('/list-student')->with('success', 'Siswa berhasil diedit');
     }
 
     /**
@@ -59,6 +103,9 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Student::findOrFail($id);
+        $data->delete();
+        return redirect('/list-student')->with('success', 'Siswa berhasil dihapus');
     }
+
 }

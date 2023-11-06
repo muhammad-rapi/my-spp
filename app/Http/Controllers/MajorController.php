@@ -41,7 +41,7 @@ class MajorController extends Controller
         ]);
 
 
-        return redirect('/list-major')->with('success', 'Jurusan berhasil dibuat');
+        return redirect('/list-major')->with('success', 'Jurusan berhasil ditambah');
     }
 
     public function edit(string $id)

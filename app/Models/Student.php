@@ -15,7 +15,7 @@ class Student extends Model
         'nis',
         'class',
         'address',
-        'major',
+        'major_id',
         'status'
     ];
 
@@ -24,9 +24,13 @@ class Student extends Model
         'nis'     => 'string',
         'class'   => 'string',
         'address' => 'string',
-        'major'   => 'string',
+        'major_id'   => 'string',
         'status'  => 'boolean',
     ];
 
+    public function major()
+    {
+        return $this->belongsTo(Major::class, 'major_id', 'id');
+    }
 
 }

@@ -43,43 +43,27 @@
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Alamat
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action
-                                    </th>
+                                    </th>                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($student as $std)                              
                                 <tr>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->major->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->major->name }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->class }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->class }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->nis}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->nis}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->address}}</p>
-                                    </td>                                
-                                    <td class="text-center">
-                                        <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/student/{{ $std->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
-                                            <a href="/update-student/{{ $std->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>
-                                            <form method="POST" action="/delete-student/{{ $std['id'] }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2">Delete</button>
-                                            </form>                                      
-                                        </div>
-                                    </td>                                   
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->address}}</p>
+                                    </td>                                      
                                 </tr>    
-                                @endforeach                          
                             </tbody>
                         </table>
                     </div>

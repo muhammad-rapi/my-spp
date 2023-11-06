@@ -18,5 +18,9 @@ class Major extends Model
         'category' => 'string'
     ];
 
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'major_id', 'id');
+    }
 
 }

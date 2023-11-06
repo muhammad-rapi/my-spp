@@ -12,7 +12,7 @@
                         <div>
                             <h5 class="mb-0">List Jurusan</h5>
                         </div>
-                        <a href="/add-major" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Jurusan</a>
+                        <a href="/create-major" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Jurusan</a>
                     </div>
                     @if(session('success'))
                         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
