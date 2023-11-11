@@ -30,7 +30,7 @@
                             <thead>
                                 <tr>                            
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Name
+                                        Nama
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Jurusan
@@ -45,7 +45,7 @@
                                         Alamat
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action
+                                        Aksi
                                     </th>
                                 </tr>
                             </thead>

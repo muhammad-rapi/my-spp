@@ -34,7 +34,7 @@
                 <h6 class="mb-0">{{ __('Profile Information') }}</h6>
             </div>
             <div class="card-body pt-4 p-3">
-                <form action="/update-major/{{ $data['id'] }}" method="POST" role="form text-left">
+                <form action="/update-major/{{ $data->id }}" method="POST" role="form text-left">
                     @csrf
                     @method('PATCH')
                     @if($errors->any())
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="major-name" class="form-control-label">{{ __('Name') }}</label>
                                 <div class="@error('major.name')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Name" value="{{ $data['name'] }}" id="major-name" name="name">
+                                    <input class="form-control" type="text" placeholder="Name" value="{{ $data->name }}" id="major-name" name="name">
                                         @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label for="category" class="form-control-label">{{ __('Category') }}</label>
                                 <div class="@error('major.category')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Category" value="{{ $data['category'] }}" id="category" name="category">
+                                    <input class="form-control" type="text" placeholder="Category" value="{{ $data->category }}" id="category" name="category">
                                         @error('category')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
