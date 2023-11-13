@@ -12,7 +12,7 @@
                 <h6 class="mb-0">{{ __('Informasi Jurusan') }}</h6>
             </div>
             <div class="card-body pt-4 p-3">
-                <form action="add-major" method="POST" role="form text-left">
+                <form action="{{ route('majors.store') }}" method="POST" role="form text-left">
                     @csrf
                     @if($errors->any())
                         <div class="mt-3  alert alert-primary alert-dismissible fade show" role="alert">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+                    
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Simpan' }}</button>

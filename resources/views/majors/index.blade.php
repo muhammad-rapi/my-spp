@@ -41,25 +41,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($major as $m)  
+                                @foreach ($majors as $m)  
                                 <tr>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m['name'] }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m['category'] }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
                                     </td>                                
                                     <td class="text-center">
                                         <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/update-major/{{ $m['id'] }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>
-                                            <form method="POST" action="/delete-major/{{ $m['id'] }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-                                            </form>                                      
+                                            <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>                                    
+                                            <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
                                         </div>
                                     </td>                                   
                                 </tr>    
+                                
                                 @endforeach                          
                             </tbody>
                         </table>
@@ -70,25 +67,28 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- modal --}}
+@foreach ($majors as $m)
+<div class="modal fade" id="exampleModal{{ $m->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">{{ 'Apakah kamu yakin ingin menghapus data ini?' }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>    
-    <div class="modal-footer">
-        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-        <form method="POST" action="/delete-major/{{ $m['id'] }}">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn bg-gradient-danger">Delete</button>
-            </form>
-        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">{{ 'Apakah kamu yakin ingin menghapus data ini?' }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>    
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <form method="POST" action="{{ route('majors.destroy', ['major' => $m->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn bg-gradient-danger">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+@endforeach
 
 @endsection

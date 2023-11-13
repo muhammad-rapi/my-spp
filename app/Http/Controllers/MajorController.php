@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\Major\Index as IndexRequest;
+use App\Http\Requests\Major\Store as StoreRequest;
+use App\Http\Requests\Major\Update as UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\View;
@@ -12,64 +15,49 @@ use Illuminate\Support\Facades\View;
 class MajorController extends Controller
 {
 
+    private $majors;
+
+    public function __construct(Major $majors)
+    {
+        $this->majors = $majors;
+    }
+
+
     public function index()
     {
-        $major = Major::all();
-
-        return view('majors/list-major', [
-            'major' => $major,
-        ]);
+        $majors = $this->majors->all();
+        return view('majors.index', compact('majors'));
     }
 
     public function create()
     {
-        return view('majors/add-major');
+        return view('majors.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
 
-        $attributes = $request->validate([
-            'name'     => ['required', 'max:50'],
-            'category' => ['required', 'max:50'],
-        ]);
-
-
-        Major::create([
-            'name'     => $attributes['name'],
-            'category' => $attributes['category'],
-        ]);
-
-
-        return redirect('/list-major')->with('success', 'Jurusan berhasil ditambah');
+        $this->majors->create($request->validated());
+        return redirect()->route('majors.index')->with('success', 'Jurusan berhasil ditambah');
     }
 
     public function edit(string $id)
     {
-        $data = $data = Major::findOrFail($id);
-        return view('majors/edit-major',['data' => $data]);
+        $major = $this->majors->findOrFail($id);
+        return view('majors.edit', compact('major'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
         //
-        $data = Major::findOrFail($id);
-        $attributes = $request->validate([
-            'name'     => ['required', 'max:50'],
-            'category' => ['required', 'max:50'],
-        ]);
+        $major = $this->majors->findOrFail($id);
 
+        $major->update($request->validated());
 
-        $data->update([
-            'name'     => $attributes['name'],
-            'category' => $attributes['category'],
-        ]);
-
-
-        return redirect('/list-major')->with('success', 'Jurusan berhasil diedit');
+        return redirect()->route('majors.index')->with('success', 'Jurusan berhasil diedit');
     }
 
     /**
@@ -77,9 +65,9 @@ class MajorController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Major::findOrFail($id);
+        $data = $this->majors->findOrFail($id);
         $data->delete();
-        return redirect('/list-major')->with('success', 'Jurusan berhasil dihapus');
+        return redirect()->route('majors.index')->with('success', 'Jurusan berhasil dihapus');
     }
 
 }
