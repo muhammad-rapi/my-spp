@@ -15,17 +15,17 @@ use Illuminate\Support\Facades\View;
 class MajorController extends Controller
 {
 
-    private $majors;
+    protected $model;
 
-    public function __construct(Major $majors)
+    public function __construct(Major $model)
     {
-        $this->majors = $majors;
+        $this->model = $model;
     }
 
 
     public function index()
     {
-        $majors = $this->majors->all();
+        $majors = $this->model->all();
         return view('majors.index', compact('majors'));
     }
 
@@ -36,37 +36,31 @@ class MajorController extends Controller
 
     public function store(StoreRequest $request)
     {
-
-        $this->majors->create($request->validated());
+        $this->model->create($request->validated());
         return redirect()->route('majors.index')->with('success', 'Jurusan berhasil ditambah');
     }
 
     public function edit(string $id)
     {
-        $major = $this->majors->findOrFail($id);
+        $major = $this->model->findOrFail($id);
         return view('majors.edit', compact('major'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id)
+    public function update(UpdateRequest $request, Major $major)
     {
-        //
-        $major = $this->majors->findOrFail($id);
-
         $major->update($request->validated());
-
         return redirect()->route('majors.index')->with('success', 'Jurusan berhasil diedit');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Major $major)
     {
-        $data = $this->majors->findOrFail($id);
-        $data->delete();
+        $major->delete();
         return redirect()->route('majors.index')->with('success', 'Jurusan berhasil dihapus');
     }
 

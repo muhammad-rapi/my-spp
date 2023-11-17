@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Major;
 use App\Models\User;
+use App\Http\Requests\Student\Store as StoreRequest;
+use App\Http\Requests\Student\Update as UpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -13,99 +15,61 @@ use Illuminate\Support\Facades\View;
 class StudentController extends Controller
 {
 
-    
+    protected $model, $major;
+
+    public function __construct(Student $model, Major $major)
+    {
+        $this->model = $model;
+        $this->major = $major;
+    }
+
     public function index()
     {
-        $student = Student::all();
-        return view('students/list-student', [
-            'student' => $student,
-        ]);
+        $student = $this->model->all();
+        return view('students.index', compact('student'));
     }
 
     public function show(string $id)
     {
-        $student = Student::findOrFail($id);
-        return view('students/detail-student', [
-            'student' => $student
-        ]);
+        $student = $this->model->findOrFail($id);
+        return view('students/detail',compact('student'));
     }
 
     public function create()
     {
         $major = Major::all();
-        return view('students/add-student', ['major' => $major]);
+        return view('students.create', compact('major'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-
-        $attributes = $request->validate([
-            'name'     => ['required', 'max:50'],
-            'major_id'     => ['required', 'max:50'],
-            'class' => ['required', 'max:50'],
-            'nis' => ['required', 'max:50'],
-            'address' => ['required', ],
-        ]);
-
-
-        Student::create([
-            'name'     => $attributes['name'],
-            'major_id' => $attributes['major_id'],
-            'class' => $attributes['class'],
-            'nis' => $attributes['nis'],
-            'address' => $attributes['address'],
-        ]);
-
-
-        return redirect('/list-student')->with('success', 'Siswa berhasil ditambah');
+        $this->model->create($request->validated());
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambah');
     }
 
     public function edit(string $id)
     {
-        $student = Student::findOrFail($id);
-        $major = Major::all();
-        return view('students/edit-student', [
-            'major' => $major,
-            'student' => $student
-        ]);
+        $major = $this->major->all();
+        $student = $this->model->findOrFail($id);
+        return view('students.edit', compact('student', 'major'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, Student $student)
     {
-        //
-        $data = Student::findOrFail($id);
-        $attributes = $request->validate([
-            'name'     => ['required', 'max:50'],
-            'major_id' => ['required', 'max:50'],
-            'class'    => ['required', 'max:50'],
-            'nis'      => ['required', 'max:50'],
-            'address'  => ['required',],
-        ]);
-
-        $data->Update([
-            'name'     => $attributes['name'],
-            'major_id' => $attributes['major_id'],
-            'class'    => $attributes['class'],
-            'nis'      => $attributes['nis'],
-            'address'  => $attributes['address'],
-        ]);
-
-
-
-        return redirect('/list-student')->with('success', 'Siswa berhasil diedit');
+        $student->update($request->validated());
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil diedit');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        $data = Student::findOrFail($id);
-        $data->delete();
-        return redirect('/list-student')->with('success', 'Siswa berhasil dihapus');
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil dihapus');
     }
 
 }

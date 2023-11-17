@@ -13,7 +13,7 @@
                 <h6 class="mb-0">{{ __('Informasi Siswa') }}</h6>
             </div>
             <div class="card-body pt-4 p-3">
-                <form action="add-student" method="POST" role="form text-left">
+                <form action="{{ route('students.store') }}" method="POST" role="form text-left">
                     @csrf
                     @if($errors->any())
                         <div class="mt-3  alert alert-primary alert-dismissible fade show" role="alert">
@@ -53,13 +53,12 @@
                                     <select name="major_id" class="form-select" aria-label="Default select example">
                                         <option selected>Pilih Jurusan</option>
                                         @foreach ($major as $m)                                            
-                                        <option value="{{ $m['id'] }}">{{ $m['name'] }}</option>
+                                        <option value="{{ $m->id }}">{{ $m->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('major')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                        
+                                    @enderror
                                 </div>
                             </div>
                         </div>

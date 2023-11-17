@@ -34,7 +34,7 @@
                 <h6 class="mb-0">{{ __('Profile Information') }}</h6>
             </div>
             <div class="card-body pt-4 p-3">
-                <form action="/update-student/{{ $student->id }}" method="POST" role="form text-left">
+                <form action="{{ route('students.update', ['student' => $student->id]) }}" method="POST" role="form text-left">
                     @csrf
                     @method('PATCH')
                     @if($errors->any())

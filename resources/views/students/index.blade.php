@@ -69,13 +69,9 @@
                                     </td>                                
                                     <td class="text-center">
                                         <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/student/{{ $std->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
-                                            <a href="/update-student/{{ $std->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>
-                                            <form method="POST" action="/delete-student/{{ $std['id'] }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2">Delete</button>
-                                            </form>                                      
+                                            <a href="/students/{{ $std->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
+                                            <a href="/edit-student/{{ $std->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                        
+                                            <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $std->id }}">Delete</button>                             
                                         </div>
                                     </td>                                   
                                 </tr>    
@@ -89,4 +85,30 @@
     </div>
 </div>
  
+
+{{-- modal --}}
+@foreach ($student as $std)
+<div class="modal fade" id="exampleModal{{ $std->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">{{ 'Apakah kamu yakin ingin menghapus data ini?' }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>    
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <form method="POST" action="{{ route('students.destroy', ['student' => $std->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn bg-gradient-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
 @endsection

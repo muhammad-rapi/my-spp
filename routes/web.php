@@ -35,27 +35,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 	// Major Series
-	// Route::get('/create-major', [MajorController::class, 'create']);
-	// Route::post('/add-major', [MajorController::class, 'store']);
-	// Route::get('/list-major', [MajorController::class, 'index']);
-	// Route::get('/update-major/{id}', [MajorController::class, 'edit']);
-	// Route::patch('/update-major/{id}', [MajorController::class, 'update']);
-	// Route::delete('/delete-major/{id}', [MajorController::class, 'destroy']);
-	
 	Route::resource('majors', MajorController::class);
 	Route::get('create-major', [MajorController::class, 'create']);
 	Route::get('list-major', [MajorController::class, 'index']);
 	Route::get('edit-major/{id}', [MajorController::class, 'edit']);
 
-
 	// Student Series
-	// Route::get('/create-student', [StudentController::class, 'create']);
-	// Route::post('/add-student', [StudentController::class, 'store']);
-	// Route::get('/list-student', [StudentController::class, 'index']);
-	// Route::get('/student/{id}', [StudentController::class, 'show']);
-	// Route::get('/update-student/{id}', [StudentController::class, 'edit']);
-	// Route::patch('/update-student/{id}', [StudentController::class, 'update']);
-	// Route::delete('/delete-student/{id}', [StudentController::class, 'destroy']);
+	Route::resource('students', StudentController::class);
+	Route::get('create-student', [StudentController::class, 'create']);
+	Route::get('list-student', [StudentController::class, 'index']);
+	Route::get('edit-student/{id}', [StudentController::class, 'edit']);
+	Route::get('students/{id}', [StudentController::class, 'show']);
 
 
 	Route::get('/login', function () {
