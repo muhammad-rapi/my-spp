@@ -9,7 +9,18 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $table = 'students';
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->created_by = \Auth::id();
+            $model->updated_by = \Auth::id();
+        });
+
+        static::saving(function ($model) {
+            $model->updated_by = \Auth::id();
+        });
+    }
+
     protected $fillable = [
         'name',
         'nis',
@@ -32,5 +43,17 @@ class Student extends Model
     {
         return $this->belongsTo(Major::class, 'major_id', 'id');
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+
 
 }

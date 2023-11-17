@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Major;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Store extends FormRequest
@@ -36,5 +37,6 @@ class Store extends FormRequest
             'category' => 'required|max:50',
         ];
     }
+    
 
 }
