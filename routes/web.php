@@ -8,6 +8,8 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 	
+	// User Series
+	Route::get('/profile', [ProfilController::class, 'index']);
 	Route::get('/logout', [SessionsController::class, 'destroy']);
+	
 
 	
 	// Major Series
@@ -47,14 +52,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('edit-student/{id}', [StudentController::class, 'edit']);
 	Route::get('students/{id}', [StudentController::class, 'show']);
 
+	// Payment Series
+	Route::resource('payments', PaymentController::class);
+	Route::get('create-payment', [PaymentController::class, 'create']);
+	Route::get('list-payment', [PaymentController::class, 'index']);
+	Route::get('edit-payment/{id}', [PaymentController::class, 'edit']);
+	Route::get('payments/{id}', [PaymentController::class, 'show']);
 
+
+	// Account Login
 	Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
 });
 
 
-
+// Guest Login
 Route::group(['middleware' => 'guest'], function () {
 	Route::get('/register', [RegisterController::class, 'create']);
 	Route::post('/register', [RegisterController::class, 'store']);

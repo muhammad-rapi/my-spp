@@ -19,6 +19,7 @@ class Store extends FormRequest
         return [
             'name.required'     => 'Nama Siswa Tidak Boleh Kosong',
             'name.max' => 'Nama Siswa Tidak Boleh Lebih Dari 50 Karakter',
+            'major_id.required' => 'Jurusan Wajib Dipilih',
             'class.required' => 'Kelas Tidak Boleh Kosong',
             'class.max' => 'Kelas Tidak Boleh Lebih Dari 5 Karakter',
             'nis.required' => 'NIS Tidak Boleh Kosong',

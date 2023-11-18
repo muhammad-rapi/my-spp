@@ -11,6 +11,7 @@ class Major extends Model
 
     protected $table = 'majors';
 
+    // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
     protected static function booted()
     {
         static::creating(function ($model) {
@@ -41,16 +42,19 @@ class Major extends Model
         'category' => 'string'
     ];
 
+    // relasi dari table student
     public function students()
     {
-        return $this->hasMany(Student::class, 'major_id', 'id');
+        return $this->hasMany(Student::class, 'major', 'id');
     }
 
+    // menambahkan created_by
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    // menambahkan updated_by
     public function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by');

@@ -6,13 +6,13 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card mb-4 mx-4">
+            <div class="card mb-4 mx-3">
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">List Jurusan</h5>
+                            <h5 class="mb-0">List Pembayaran</h5>
                         </div>
-                        <a href="/create-major" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Jurusan</a>
+                        <a href="/create-student" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Pembayaran</a>
                     </div>
                     @if(session('success'))
                         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
@@ -30,45 +30,47 @@
                             <thead>
                                 <tr>                            
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama
+                                        Nama Siswa
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Kategori
+                                        Nominal Pembayaran
                                     </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Dibuat Pada
-                                        </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Dibuat OLeh
-                                        </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Aksi
+                                        Bulan
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Dibuat Pada
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Dibuat Oleh
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($majors as $m)  
+                                @foreach ($payment as $std)                              
                                 <tr>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $std->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $std->major->name }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $std->class }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $std->nis}}</p>
+                                    </td>                                
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $std->address}}</p>
                                     </td>                                
                                     <td class="text-center">
                                         <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>                                    
-                                            <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
+                                            <a href="/students/{{ $std->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
+                                            <a href="/edit-student/{{ $std->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                                                    
                                         </div>
                                     </td>                                   
                                 </tr>    
-                                
                                 @endforeach                          
                             </tbody>
                         </table>
@@ -78,29 +80,8 @@
         </div>
     </div>
 </div>
+ 
 
-{{-- modal --}}
-@foreach ($majors as $m)
-<div class="modal fade" id="exampleModal{{ $m->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title font-weight-normal" id="exampleModalLabel">{{ 'Apakah kamu yakin ingin menghapus data ini?' }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>    
-            <div class="modal-footer">
-                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <form method="POST" action="{{ route('majors.destroy', ['major' => $m->id]) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn bg-gradient-danger">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+
 
 @endsection

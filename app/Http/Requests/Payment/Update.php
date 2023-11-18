@@ -17,8 +17,8 @@ class Update extends FormRequest
     public function messages(): array
     {
         return [
-            'amount_payment.required' => 'Jumlah Pembayaran Tidak Boleh Kosong',
-            'student_id.required'     => 'Siswa Wajib Dipilih',
+            'amount_payment.required' => 'Nominal Pembayaran Tidak Boleh Kosong',
+            'student_id.required'     => 'Kelas Tidak Boleh Kosong',
         ];
     }
 

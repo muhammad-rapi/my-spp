@@ -32,7 +32,7 @@ class StudentController extends Controller
     public function show(string $id)
     {
         $student = $this->model->findOrFail($id);
-        return view('students/detail',compact('student'));
+        return view('students.detail',compact('student'));
     }
 
     public function create()

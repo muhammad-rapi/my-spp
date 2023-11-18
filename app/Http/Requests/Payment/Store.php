@@ -4,7 +4,7 @@ namespace App\Http\Requests\Payment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Update extends FormRequest
+class Store extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,8 +17,8 @@ class Update extends FormRequest
     public function messages(): array
     {
         return [
-            'amount_payment.required' => 'Jumlah Pembayaran Tidak Boleh Kosong',
-            'student_id.required'     => 'Siswa Wajib Dipilih',
+            'amount_payment.required'     => 'Nominal  Pembayaran Tidak Boleh Kosong',
+            'student_id.required' => 'Siswa Wajib Dipilih',
         ];
     }
 
@@ -29,9 +29,9 @@ class Update extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'amount_payment' => 'required',
-            'student_id'     => 'required|max:5',
+        return[
+            'amount_payment'     => 'required',
+            'student_id' => 'required|max:5',
         ];
 
     }
