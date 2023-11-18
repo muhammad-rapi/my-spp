@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card mb-4 mx-4">
+            <div class="card mb-4 mx-4 px-3">
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
@@ -24,54 +24,55 @@
                         </div>
                     @endif
                 </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>                            
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Kategori
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Pada
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat OLeh
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Aksi
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($majors as $m)  
-                                <tr>
-                                    <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
-                                    </td>                                
-                                    <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
-                                    </td>                                
-                                    <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
-                                    </td>                                
-                                    <td class="text-center">
-                                        <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>                                    
-                                            <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
-                                        </div>
-                                    </td>                                   
-                                </tr>    
-                                
-                                @endforeach                          
-                            </tbody>
-                        </table>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-3">
+                                <thead>
+                                    <tr>                            
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Nama
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Kategori
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Dibuat Pada
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Dibuat OLeh
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($majors as $m)  
+                                    <tr>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
+                                        </td>                                
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
+                                        </td>                                
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
+                                        </td>                                
+                                        <td class="text-center">
+                                            <div class="d-flex gap-3 justify-content-center">
+                                                <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>                                    
+                                                <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
+                                            </div>
+                                        </td>                                   
+                                    </tr>                            
+                                    @endforeach                          
+                                </tbody>
+                            </table>
+                        </div>
+                        {{ $majors->links('vendor.pagination.bootstrap-5') }}                       
                     </div>
                 </div>
             </div>

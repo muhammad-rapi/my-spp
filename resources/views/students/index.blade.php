@@ -24,9 +24,9 @@
                         </div>
                     @endif
                 </div>
-                <div class="card-body px-0 pt-0 pb-2">
+                <div class="card-body px-0 pt-0 pb-2 mx-3">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
+                        <table class="table align-items-center mb-3">
                             <thead>
                                 <tr>                            
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -56,40 +56,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($student as $std)                              
+                                @foreach ($students as $student)                              
                                 <tr>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->major->name }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->major->name }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->class }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->class }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->nis}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->nis}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->address}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->address}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->created_at}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->created_at}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $std->createdBy->name}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->createdBy->name}}</p>
                                     </td>                                
                                     <td class="text-center">
                                         <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/students/{{ $std->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
-                                            <a href="/edit-student/{{ $std->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                        
-                                            <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $std->id }}">Delete</button>                             
+                                            <a href="/students/{{ $student->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
+                                            <a href="/edit-student/{{ $student->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                        
+                                            <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}">Delete</button>                             
                                         </div>
                                     </td>                                   
                                 </tr>    
                                 @endforeach                          
                             </tbody>
                         </table>
+                        {{ $students->links('vendor.pagination.bootstrap-5') }}                       
                     </div>
                 </div>
             </div>
@@ -99,8 +100,8 @@
  
 
 {{-- modal --}}
-@foreach ($student as $std)
-<div class="modal fade" id="exampleModal{{ $std->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($students as $student)
+<div class="modal fade" id="exampleModal{{ $student->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -111,7 +112,7 @@
             </div>    
             <div class="modal-footer">
                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <form method="POST" action="{{ route('students.destroy', ['student' => $std->id]) }}">
+                <form method="POST" action="{{ route('students.destroy', ['student' => $student->id]) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn bg-gradient-danger">Delete</button>

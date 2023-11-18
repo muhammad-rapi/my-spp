@@ -23,7 +23,7 @@
                         <span class="d-sm-inline d-none">Profile</span>
                     </a>                  
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile Saya</a></li>
                         <li><a class="dropdown-item" href="{{ url('/logout') }}">Logout</a></li>
                     </ul>
                 </div>

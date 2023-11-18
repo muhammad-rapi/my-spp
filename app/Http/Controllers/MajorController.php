@@ -25,7 +25,7 @@ class MajorController extends Controller
 
     public function index()
     {
-        $majors = $this->model->all();
+        $majors = $this->model->paginate(1);
         return view('majors.index', compact('majors'));
     }
 

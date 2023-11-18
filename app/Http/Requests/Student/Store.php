@@ -24,6 +24,7 @@ class Store extends FormRequest
             'class.max' => 'Kelas Tidak Boleh Lebih Dari 5 Karakter',
             'nis.required' => 'NIS Tidak Boleh Kosong',
             'nis.max' => 'NIS Tidak Boleh Lebih Dari 5 Karakter',
+            'nis.unique' => 'NIS Yang Digunakan Sudah Terdaftar',
             'alamat.required' => 'Alamat Tidak Boleh Kosong',
             'alamat.max' => 'Alamat Terlalu Panjang',
         ];
@@ -40,7 +41,7 @@ class Store extends FormRequest
             'name'     => 'required|max:225',
             'major_id' => 'required|max:5',
             'class'    => 'required|max:5',
-            'nis'      => 'required|max:25',
+            'nis'      => 'required|max:25|unique:students',
             'address'  => 'required|max:225'
         ];
 

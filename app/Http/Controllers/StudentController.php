@@ -25,8 +25,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        $student = $this->model->all();
-        return view('students.index', compact('student'));
+        $students = $this->model->paginate(1);
+        return view('students.index', compact('students'));
     }
 
     public function show(string $id)
