@@ -52,8 +52,8 @@
                                 <div class="@error('major.id')border border-danger rounded-3 @enderror">
                                     <select name="major_id" class="form-select" aria-label="Default select example">
                                         <option selected>Pilih Jurusan</option>
-                                        @foreach ($major as $m)                                            
-                                        <option value="{{ $m->id }}">{{ $m->name }}</option>
+                                        @foreach($majors as $major)
+                                        <option value="{{ $major->id }}">{{ $major->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('major')
@@ -113,4 +113,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection
