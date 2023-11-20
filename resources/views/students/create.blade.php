@@ -60,7 +60,7 @@
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
-                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -79,6 +79,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="major" class="form-control-label">{{ __('Jenis Kelamin') }}</label>
+                                <div class="@error('student.gender')border border-danger rounded-3 @enderror">
+                                    <select name="gender" class="form-select" aria-label="Default select example">
+                                        <option selected>Jenis Kelamin</option>
+                                        <option>{{ 'Pria' }}</option>
+                                        <option>{{ 'Wanita' }}</option>
+                                    </select>
+                                    @error('student')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

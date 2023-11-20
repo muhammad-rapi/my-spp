@@ -27,7 +27,10 @@
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-3">
                             <thead>
-                                <tr>                            
+                                <tr>                  
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            No.
+                                    </th>          
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Nama Siswa
                                     </th>
@@ -46,8 +49,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($payments as $payment)                              
+                                @foreach ($payments as $key =>  $payment)                              
                                 <tr>
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $payments->firstItem() + $key }}
+                                        </p>
+                                    </td>
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->students->name }}</p>
                                     </td>

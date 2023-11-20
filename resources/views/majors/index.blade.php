@@ -30,6 +30,9 @@
                                 <thead>
                                     <tr>                            
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            No.
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nama
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -47,19 +50,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($majors as $m)  
+                                    @foreach ($majors as $key => $m)  
                                     <tr>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $m->name }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $majors->firstItem() + $key}}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $m->category }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $m->created_at }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
                                         </td>                                
                                         <td class="text-center">
                                             <div class="d-flex gap-3 justify-content-center">

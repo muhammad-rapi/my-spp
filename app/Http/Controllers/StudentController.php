@@ -48,7 +48,11 @@ class StudentController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $this->model->create($request->validated());
+        $validated = $request->validated();
+
+        $validated['status'] = 1;
+
+        $this->model->create($validated);
         return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambah');
     }
 

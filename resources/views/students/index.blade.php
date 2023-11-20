@@ -28,7 +28,10 @@
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-3">
                             <thead>
-                                <tr>                            
+                                <tr>     
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        No.
+                                    </th>                       
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Nama
                                     </th>
@@ -42,7 +45,13 @@
                                         NIS
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Jenis Kelamin
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Alamat
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Status
                                     </th>
                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Dibuat Pada
@@ -56,8 +65,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($students as $student)                              
+                                @foreach ($students as $key => $student)                              
                                 <tr>
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $students->firstItem() + $key }}</p>
+                                    </td>
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->name }}</p>
                                     </td>
@@ -71,7 +83,13 @@
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->nis}}</p>
                                     </td>                                
                                     <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->gender}}</p>
+                                    </td>                                
+                                    <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->address}}</p>
+                                    </td>                                
+                                    <td class="text-center">
+                                        <span class="badge bg-gradient-{{$student->status === 1 ? 'success' : 'danger'}}">{{ $student->status === 1 ? 'Aktif' : 'Nonaktif' }}</span>
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->created_at}}</p>

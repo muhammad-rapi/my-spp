@@ -29,6 +29,7 @@ class Student extends Model
         'name',
         'nis',
         'class',
+        'gender',
         'address',
         'major_id',
         'status'
@@ -40,9 +41,10 @@ class Student extends Model
         'updated_by' => 'string',
         'nis'     => 'string',
         'class'   => 'string',
+        'gender'  => 'string',
         'address' => 'string',
         'major_id'   => 'string',
-        'status'  => 'boolean',
+        'status'  => 'integer',
     ];
 
     // relasi dari table majors

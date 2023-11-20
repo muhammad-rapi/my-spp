@@ -42,7 +42,8 @@ class Update extends FormRequest
             'major_id' => 'required|max:5',
             'class'    => 'required|max:5',
             'nis'      => 'required|max:25|unique:students',
-            'address'  => 'required|max:225'
+            'address'  => 'required|max:225',
+            'gender'  => 'max:11'
         ];
 
     }
