@@ -70,15 +70,7 @@
       </li>
       <li class="nav-item mt-3">
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pembayaran</h6>
-      </li>
-      <li class="nav-item pb-2">
-        <a class="nav-link {{ (Request::is('create-payment') ? 'active' : '') }} " href="{{ url('create-payment') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i style="font-size: 1rem;" class="fas fa-user-plus   ps-2 pe-2 text-center text-dark {{ (Request::is('create-payment') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
-            </div>
-            <span class="nav-link-text ms-1">Tambah Pembayaran</span>
-        </a>
-      </li>
+      </li>      
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('list-payment') ? 'active' : '') }} " href="{{ url('list-payment') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">

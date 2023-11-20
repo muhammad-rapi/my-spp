@@ -18,7 +18,8 @@ class Store extends FormRequest
     {
         return [
             'amount_payment.required'     => 'Nominal  Pembayaran Tidak Boleh Kosong',
-            'student_id.required' => 'Siswa Wajib Dipilih',
+            'student_id.required' => 'Siswa Tidak Boleh Kosong',
+            'month.required' => 'Bulan Tidak Boleh Kosong',
         ];
     }
 
@@ -32,6 +33,7 @@ class Store extends FormRequest
         return[
             'amount_payment'     => 'required',
             'student_id' => 'required|max:5',
+            'month' => 'required'
         ];
 
     }

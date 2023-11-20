@@ -20,7 +20,7 @@
                 <div class="dropdown">
                     <a href="#" class="nav-link text-body font-weight-bold px-0 dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-user me-sm-1"></i>
-                        <span class="d-sm-inline d-none">Profile</span>
+                        <span class="d-sm-inline d-none">{{ Auth::user()->name}}</span>
                     </a>                  
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile Saya</a></li>

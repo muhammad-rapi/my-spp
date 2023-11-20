@@ -81,7 +81,7 @@
                                     </td>                                
                                     <td class="text-center">
                                         <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/students/{{ $student->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2">{{ 'Detail' }}</a>
+                                            <a href="/students/{{ $student->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2 "><i class="fas fa-info-circle fa-lg"></i></a>
                                             <a href="/edit-student/{{ $student->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                        
                                             <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}">Delete</button>                             
                                         </div>

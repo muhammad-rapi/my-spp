@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\Major;
+use App\Models\Student;
 use App\Models\User;
 use App\Http\Requests\Payment\Store as StoreRequest;
 use App\Http\Requests\Payment\Update as UpdateRequest;
@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\View;
 class PaymentController extends Controller
 {
 
-    protected $model, $major;
+    protected $model, $student;
 
-    public function __construct(Payment $model, Major $major)
+    public function __construct(Payment $model, Student $student)
     {
         $this->model = $model;
-        $this->major = $major;
+        $this->student = $student;
     }
 
     public function index()
     {
-        $payment = $this->model->all();
-        return view('payments.index', compact('payment'));
+        $payments = $this->model->with('students')->paginate(25);
+        return view('payments.index', compact('payments'));
     }
 
     public function show(string $id)
@@ -35,23 +35,23 @@ class PaymentController extends Controller
         return view('payments.detail',compact('payment'));
     }
 
-    public function create()
+    public function create($student_id)
     {
-        $major = Major::all();
-        return view('payments.create', compact('major'));
+        // $payments = $this->model;       
+        return view('payments.create', ['student_id' => $student_id]);
     }
 
     public function store(StoreRequest $request)
     {
         $this->model->create($request->validated());
-        return redirect()->route('payments.index')->with('success', 'Siswa berhasil ditambah');
+        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil Dibuat');
     }
 
     public function edit(string $id)
     {
-        $major = $this->major->all();
+        $student = $this->student->all();
         $payment = $this->model->findOrFail($id);
-        return view('payments.edit', compact('Payment', 'major'));
+        return view('payments.edit', compact('Payment', 'student'));
     }
 
     /**
@@ -60,7 +60,7 @@ class PaymentController extends Controller
     public function update(UpdateRequest $request, Payment $payment)
     {
         $payment->update($request->validated());
-        return redirect()->route('payments.index')->with('success', 'Siswa berhasil diedit');
+        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil diedit');
     }
 
     /**
@@ -69,7 +69,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return redirect()->route('payments.index')->with('success', 'Siswa berhasil dihapus');
+        return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil dihapus');
     }
 
 }

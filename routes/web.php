@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// Payment Series
 	Route::resource('payments', PaymentController::class);
-	Route::get('create-payment', [PaymentController::class, 'create']);
+	Route::get('create-payment/{student_id}', [PaymentController::class, 'create'])->name('payment.create');
 	Route::get('list-payment', [PaymentController::class, 'index']);
 	Route::get('edit-payment/{id}', [PaymentController::class, 'edit']);
 	Route::get('payments/{id}', [PaymentController::class, 'show']);

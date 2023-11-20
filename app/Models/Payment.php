@@ -34,13 +34,13 @@ class Payment extends Model
         'id' => 'string',
         'student_id' => 'string',
         'amount_payment' => 'integer',
-        'month' => 'integer'
+        'month' => 'string'
     ];
 
     // relasi dari table student
     public function students()
     {
-        return $this->hasMany(Student::class, 'student_id', 'id');
+        return $this->belongsTo(Student::class, 'student_id', 'id');
     }   
 
     // menambahkan created_by

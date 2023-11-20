@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Major;
+use App\Models\Payment;
 use App\Models\User;
 use App\Http\Requests\Student\Store as StoreRequest;
 use App\Http\Requests\Student\Update as UpdateRequest;
@@ -15,24 +16,27 @@ use Illuminate\Support\Facades\View;
 class StudentController extends Controller
 {
 
-    protected $model, $major;
+    protected $model, $major, $payment;
 
-    public function __construct(Student $model, Major $major)
+    public function __construct(Student $model, Major $major, Payment $payment)
     {
         $this->model = $model;
         $this->major = $major;
+        $this->payment = $payment;
     }
 
     public function index()
     {
-        $students = $this->model->paginate(1);
+        $students = $this->model->paginate(25);
         return view('students.index', compact('students'));
     }
 
     public function show(string $id)
     {
         $student = $this->model->findOrFail($id);
-        return view('students.detail',compact('student'));
+        $payments = $this->payment->where('student_id', $id)->get();
+
+        return view('students.detail',compact('student', 'payments'));
     }
 
     public function create()

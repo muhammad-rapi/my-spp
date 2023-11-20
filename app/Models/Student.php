@@ -54,7 +54,7 @@ class Student extends Model
     // relasi dari table payments
     public function payment()
     {
-        return $this->belongsTo(Payment::class);
+        return $this->hasMany(Payment::class);
     }
 
     // menambahkan created_by

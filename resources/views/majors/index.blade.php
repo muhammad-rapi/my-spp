@@ -50,21 +50,21 @@
                                     @foreach ($majors as $m)  
                                     <tr>
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $m->name }}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $m->category }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $m->created_at }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
                                         </td>                                
                                         <td class="text-center">
                                             <div class="d-flex gap-3 justify-content-center">
-                                                <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-2 mb-2">{{ 'Edit' }}</a>                                    
-                                                <button type="button" class="btn bg-gradient-danger btn-sm mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
+                                                <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-1 mb-1">{{ 'Edit' }}</a>                                    
+                                                <button type="button" class="btn bg-gradient-danger btn-sm mt-1 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
                                             </div>
                                         </td>                                   
                                     </tr>                            
@@ -72,13 +72,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $majors->links('vendor.pagination.bootstrap-5') }}                       
-                    </div>
+                    {{ $majors->links('vendor.pagination.bootstrap-5') }}                       
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 {{-- modal --}}
 @foreach ($majors as $m)

@@ -36,15 +36,21 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="student-name" class="form-control-label">{{ __('Nama') }}</label>
-                                <div class="@error('student.name')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Nama Siswa" id="student-name" name="name">
-                                        @error('name')
+                                <label for="student_id" class="form-control-label">{{ __('Nama Siswa') }}</label>
+                                <div class="@error('student.id')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="text" placeholder="Nama Siswa" id="name" name="name" value="">
+                                    @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                    @enderror
+                                </div>
+                                <div class="@error('student.id')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="hidden" id="student_id" name="student_id" value="{{ $student_id }}">
+                                    @error('name')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>                    
+                    </div>               
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -62,7 +68,7 @@
                             <div class="form-group">
                                 <label for="class" class="form-control-label">{{ __('Bulan') }}</label>
                                 <div class="@error('student.month')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="month" id="month" name="month">
+                                    <input class="form-control" type="text" id="month" name="month" placeholder="Masukkan Bulan dan Tahun">
                                         @error('month')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror                                        
