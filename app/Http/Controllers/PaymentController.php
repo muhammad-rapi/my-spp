@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentSuccessful;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\User;
@@ -43,7 +44,8 @@ class PaymentController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $this->model->create($request->validated());
+        $payment = $this->model->create($request->validated());
+        event(new PaymentSuccessful($payment));
         return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil Dibuat');
     }
 
