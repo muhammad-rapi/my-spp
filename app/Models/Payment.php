@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Payment extends Model
 {
     use HasFactory;
+    use Sortable;
 
     // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
     protected static function booted()
@@ -21,6 +23,17 @@ class Payment extends Model
             $model->updated_by = \Auth::id();
         });
     }
+
+    public $sortable = [
+        'id',
+        'student_id',
+        'amount_payment',
+        'month',      
+        'created_by',
+        'updated_by',
+        'created_at',
+        'updated_at'
+    ];
 
     protected $table = 'payments';
     protected $fillable = [

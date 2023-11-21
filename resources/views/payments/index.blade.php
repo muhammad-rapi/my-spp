@@ -28,23 +28,29 @@
                         <table class="table align-items-center mb-3">
                             <thead>
                                 <tr>                  
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            No.
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                        No.
                                     </th>          
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama Siswa
+                                        @sortablelink('name', __('nama siswa'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nominal Pembayaran
+                                        @sortablelink('amount_payment', __('nominal pembayaran'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Bulan
+                                        @sortablelink('month', __('bulan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Pada
+                                        @sortablelink('created_at', __('waktu dibuat'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Oleh
+                                        @sortablelink('updated_at', __('waktu diubah'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('createdBy', __('dibuat oleh'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('updatedBy', __('diubah oleh'))
                                     </th>
                                 </tr>
                             </thead>
@@ -64,12 +70,18 @@
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->month }}</p>
                                     </td>                                
-                                    <td class="text-center">
+                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->created_at}}</p>
                                     </td>                                
                                     <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $payment->updated_at}}</p>
+                                    </td>                                
+                                    <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->createdBy->name}}</p>
-                                    </td>                      
+                                    </td>                                
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $payment->updatedBy->name}}</p>
+                                    </td>                              
                                 </tr>    
                                 @endforeach                          
                             </tbody>

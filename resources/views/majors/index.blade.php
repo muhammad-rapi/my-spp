@@ -29,49 +29,62 @@
                             <table class="table align-items-center mb-3">
                                 <thead>
                                     <tr>                            
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
                                             No.
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Nama
+                                            @sortablelink('name', __('nama'))
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Kategori
+                                            @sortablelink('category', __('kategori'))
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Dibuat Pada
+                                            @sortablelink('created_at', __('Waktu Dibuat'))
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Dibuat OLeh
+                                            @sortablelink('updated_at', __('waktu diubah'))
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            @sortablelink('created_by', __('dibuat oleh'))
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            @sortablelink('updated_by', __('diubah oleh'))
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
                                             Aksi
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($majors as $key => $m)  
+                                    @foreach ($majors as $key => $major)  
                                     <tr>
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0">{{ $majors->firstItem() + $key}}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->name }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->name }}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->category }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->category }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->created_at }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->created_at }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $m->createdBy->name }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->updated_at }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <div class="d-flex gap-3 justify-content-center">
-                                                <a href="/edit-major/{{ $m->id }}" class="btn bg-gradient-info btn-sm mt-1 mb-1">{{ 'Edit' }}</a>                                    
-                                                <button type="button" class="btn bg-gradient-danger btn-sm mt-1 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $m->id }}">Delete</button>
-                                            </div>
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->createdBy->name }}</p>
+                                        </td>                                
+                                        <td class="text-center">
+                                            <p class="text-sm font-weight-bold mb-0">{{ $major->updatedBy->name }}</p>
+                                        </td>                                
+                                        <td class="text-center">
+                                            <div class="d-flex gap-4 justify-content-between">
+                                            <a href="/majors/{{ $major->id }}" class="mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
+                                            <a href="/edit-major/{{ $major->id }}" class="mt-2 mb-2"><i class="fas fa-edit fa-lg" style="color:#fb8c00"></i></a>                                        
+                                            <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $major->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>                             
+                                        </div>
                                         </td>                                   
                                     </tr>                            
                                     @endforeach                          

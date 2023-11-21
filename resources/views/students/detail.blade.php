@@ -21,11 +21,8 @@
                                 {{  $student->name}}
                             </p>                           
                             <p class="card-description mb-2">
-                                Kelas : {{  $student->class}}
-                            </p>
-                            <p class="card-description mb-2">
-                                Jurusan : {{  $student->major->name}}
-                            </p>
+                                {{  $student->class}}  {{  $student->major->name}}
+                            </p>                            
                             <p class="card-description mb-2">
                                 NIS : {{  $student->nis}}
                             </p>
@@ -43,29 +40,32 @@
                         </a>
                     </div>
                     <div class="table-responsive p-0 mx-5">
-                        <table class="table align-items-center mb-5">
+                        <table class="table align-items-center mb-3">
                             <thead>
-                                <tr>                            
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <tr>                  
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
                                         No.
+                                    </th>          
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('name', __('nama siswa'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama Siswa
+                                        @sortablelink('amount_payment', __('nominal pembayaran'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nominal Pembayaran
+                                        @sortablelink('month', __('bulan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Bulan
+                                        @sortablelink('created_at', __('waktu dibuat'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Pada
+                                        @sortablelink('updated_at', __('waktu diubah'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Oleh
+                                        @sortablelink('createdBy', __('dibuat oleh'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Aksi
+                                        @sortablelink('updatedBy', __('diubah oleh'))
                                     </th>
                                 </tr>
                             </thead>
@@ -73,7 +73,8 @@
                                 @foreach ($payments as $key =>  $payment)                              
                                 <tr>
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $payments->firstItem() + $key }}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ $key + 1 }}
+                                        </p>
                                     </td>
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->students->name }}</p>
@@ -88,10 +89,16 @@
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->created_at}}</p>
                                     </td>                                
                                     <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $payment->updated_at}}</p>
+                                    </td>                                
+                                    <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->createdBy->name}}</p>
-                                    </td>                      
+                                    </td>                                
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $payment->updatedBy->name}}</p>
+                                    </td>                              
                                 </tr>    
-                                @endforeach      
+                                @endforeach                          
                             </tbody>
                         </table>
                     </div>

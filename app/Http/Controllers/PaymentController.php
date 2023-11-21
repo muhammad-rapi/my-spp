@@ -25,7 +25,7 @@ class PaymentController extends Controller
 
     public function index()
     {
-        $payments = $this->model->with('students')->paginate(25);
+        $payments = $this->model->with('students')->sortable()->paginate(25);
         return view('payments.index', compact('payments'));
     }
 

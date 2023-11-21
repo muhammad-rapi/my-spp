@@ -29,37 +29,43 @@
                         <table class="table align-items-center mb-3">
                             <thead>
                                 <tr>     
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
                                         No.
                                     </th>                       
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nama
+                                        @sortablelink('name', __('nama'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Jurusan
+                                        @sortablelink('major_id', __('Jurusan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Kelas
+                                        @sortablelink('class', __('kelas'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        NIS
+                                        @sortablelink('nis', __('NIS'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Jenis Kelamin
+                                        @sortablelink('gender', __('Jenis Kelamin'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Alamat
+                                        @sortablelink('address', __('alamat'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status
+                                        @sortablelink('status', __('status'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('created_at', __('waktu dibuat'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('updated_at', __('waktu diubah'))
                                     </th>
                                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat Pada
+                                        @sortablelink('createdBy', __('dibuat oleh'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Dibuat OLeh
+                                        @sortablelink('updatedBy', __('diubah oleh'))
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
                                         Aksi
                                     </th>
                                 </tr>
@@ -95,13 +101,19 @@
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->created_at}}</p>
                                     </td>                                
                                     <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->updated_at}}</p>
+                                    </td>                                
+                                    <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->createdBy->name}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <div class="d-flex gap-3 justify-content-center">
-                                            <a href="/students/{{ $student->id }}" class="btn bg-gradient-secondary btn-xs mt-2 mb-2 "><i class="fas fa-info-circle fa-lg"></i></a>
-                                            <a href="/edit-student/{{ $student->id }}" class="btn bg-gradient-info btn-xs mt-2 mb-2">{{ 'Edit' }}</a>                                        
-                                            <button type="submit" class="btn bg-gradient-danger btn-xs mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}">Delete</button>                             
+                                        <p class="text-sm font-weight-bold mb-0">{{ $student->updatedBy->name}}</p>
+                                    </td>                                
+                                    <td class="text-center">
+                                        <div class="d-flex gap-4 justify-content-between">
+                                            <a href="/students/{{ $student->id }}" class="mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
+                                            <a href="/edit-student/{{ $student->id }}" class="mt-2 mb-2"><i class="fas fa-edit fa-lg" style="color:#fb8c00"></i></a>                                        
+                                            <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>                             
                                         </div>
                                     </td>                                   
                                 </tr>    

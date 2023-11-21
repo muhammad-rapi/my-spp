@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
+
 
 class Major extends Model
 {
     use HasFactory;
+    use Sortable;
 
     protected $table = 'majors';
 
@@ -23,6 +26,17 @@ class Major extends Model
             $model->updated_by = \Auth::id();
         });
     }
+
+    // sortable
+    public $sortable = [
+        'id', 
+        'name', 
+        'category',
+        'created_by',
+        'updated_by',
+        'created_at', 
+        'updated_at'
+    ];
 
     protected $fillable = [
         'id',

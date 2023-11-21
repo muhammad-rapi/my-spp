@@ -22,9 +22,6 @@ class Update extends FormRequest
             'major_id.required' => 'Jurusan Wajib Dipilih',
             'class.required'    => 'Kelas Tidak Boleh Kosong',
             'class.max'         => 'Kelas Tidak Boleh Lebih Dari 5 Karakter',
-            'nis.required'      => 'NIS Tidak Boleh Kosong',
-            'nis.max'           => 'NIS Tidak Boleh Lebih Dari 5 Karakter',
-            'nis.unique'        => 'NIS Yang Digunakan Sudah Terdaftar',
             'alamat.required'   => 'Alamat Tidak Boleh Kosong',
             'alamat.max'        => 'Alamat Terlalu Panjang',
         ];
@@ -41,7 +38,6 @@ class Update extends FormRequest
             'name'     => 'required|max:225',
             'major_id' => 'required|max:5',
             'class'    => 'required|max:5',
-            'nis'      => 'required|max:25|unique:students',
             'address'  => 'required|max:225',
             'gender'  => 'max:11'
         ];
