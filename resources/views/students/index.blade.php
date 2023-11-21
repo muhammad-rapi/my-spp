@@ -3,7 +3,6 @@
 @section('content')
 
 <div>
-
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-3">
@@ -59,13 +58,13 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('updated_at', __('waktu diubah'))
                                     </th>
-                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('createdBy', __('dibuat oleh'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('updatedBy', __('diubah oleh'))
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder position-sticky end-0 bg-body">
                                         Aksi
                                     </th>
                                 </tr>
@@ -109,7 +108,7 @@
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->updatedBy->name}}</p>
                                     </td>                                
-                                    <td class="text-center">
+                                    <td class="text-center position-sticky end-0 bg-body">
                                         <div class="d-flex gap-4 justify-content-between">
                                             <a href="/students/{{ $student->id }}" class="mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
                                             <a href="/edit-student/{{ $student->id }}" class="mt-2 mb-2"><i class="fas fa-edit fa-lg" style="color:#fb8c00"></i></a>                                        

@@ -50,7 +50,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             @sortablelink('updated_by', __('diubah oleh'))
                                         </th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder position-sticky end-0 bg-body">
                                             Aksi
                                         </th>
                                     </tr>
@@ -79,7 +79,7 @@
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0">{{ $major->updatedBy->name }}</p>
                                         </td>                                
-                                        <td class="text-center">
+                                        <td class="text-center position-sticky end-0 bg-body">
                                             <div class="d-flex gap-4 justify-content-between">
                                             <a href="/majors/{{ $major->id }}" class="mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
                                             <a href="/edit-major/{{ $major->id }}" class="mt-2 mb-2"><i class="fas fa-edit fa-lg" style="color:#fb8c00"></i></a>                                        
