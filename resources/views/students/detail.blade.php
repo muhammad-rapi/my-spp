@@ -67,6 +67,9 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('updatedBy', __('diubah oleh'))
                                     </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder position-sticky end-0 bg-body">
+                                        Aksi
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +99,12 @@
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->updatedBy->name}}</p>
-                                    </td>                              
+                                    </td>        
+                                    <td class="text-center position-sticky end-0 bg-body">
+                                        <div class="d-flex gap-4 justify-content-between">
+                                            <a href="/payments/{{ $payment->id }}" class="btn btn-secondary mt-2 mb-2 ">Detail</a>     
+                                        </div>                                      
+                                    </td>                                
                                 </tr>    
                                 @endforeach                          
                             </tbody>

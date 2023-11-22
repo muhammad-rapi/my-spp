@@ -53,7 +53,7 @@ class PaymentController extends Controller
     {
         $student = $this->student->all();
         $payment = $this->model->findOrFail($id);
-        return view('payments.edit', compact('Payment', 'student'));
+        return view('payments.edit', compact('payment', 'student'));
     }
 
     /**
