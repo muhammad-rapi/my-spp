@@ -110,7 +110,7 @@
                                     </td>                                
                                     <td class="text-center position-sticky end-0 bg-body">
                                         <div class="d-flex gap-4 justify-content-between">
-                                            <a href="/students/{{ $student->id }}" class="mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
+                                            <a href="/students/{{ $student->id }}" class=" mt-2 mb-2 "><i class="fas fa-info-circle fa-lg" style="color: #03a9f4"></i></a>
                                             <a href="/edit-student/{{ $student->id }}" class="mt-2 mb-2"><i class="fas fa-edit fa-lg" style="color:#fb8c00"></i></a>                                        
                                             <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>                             
                                         </div>

@@ -10,6 +10,8 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ArrearController;
+use App\Models\Arrears;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +61,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('edit-payment/{id}', [PaymentController::class, 'edit']);
 	Route::get('payments/{id}', [PaymentController::class, 'show']);
 
+	// Arrears Series
+	Route::resource('arrears', ArrearController::class);
+	Route::get('create-arrear', [ArrearController::class, 'create']);
+	Route::get('list-arrear', [ArrearController::class, 'index']);
+	Route::get('edit-arrear/{id}', [ArrearController::class, 'edit']);
+	Route::get('arrears/{id}', [ArrearController::class, 'show']);
 
 	// Account Login
 	Route::get('/login', function () {

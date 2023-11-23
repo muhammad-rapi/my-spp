@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class Payment extends Model
+
+class Arrear extends Model
 {
     use HasFactory;
     use Sortable;
 
-    // jenis status pembayaran
-    const PAID = 'paid';
-    const UNPAID = 'unpaid';
+    protected $table = 'arrears';
 
     // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
     protected static function booted()
@@ -28,39 +27,50 @@ class Payment extends Model
         });
     }
 
+    // sortable
     public $sortable = [
         'id',
         'student_id',
-        'amount_payment',
-        'month',      
+        'payment_id',
+        'month',
+        'amount_of_arrears',
         'created_by',
         'updated_by',
         'created_at',
         'updated_at'
     ];
 
-    protected $table = 'payments';
     protected $fillable = [
         'id',
         'student_id',
-        'amount_payment',
+        'payment_id',
         'month',
-        'status'
+        'amount_of_arrears',
+        'created_by',
+        'updated_by',
     ];
 
     protected $casts = [
-        'id' => 'string',
-        'student_id' => 'string',
-        'amount_payment' => 'integer',
-        'month' => 'string',
-        'status' => 'string'
+        'id'         => 'string',
+        'student_id'         => 'string',
+        'payment_id'         => 'string',
+        'created_by' => 'string',
+        'updated_by' => 'string',
+        'month'       => 'string',
+        'amount_of_arrears'   => 'integer'
     ];
 
-    // relasi dari table student
+    // relasi dari table students
     public function students()
     {
         return $this->belongsTo(Student::class, 'student_id', 'id');
-    }   
+    }
+
+    // relasi dari table payments
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
+    }
 
     // menambahkan created_by
     public function createdBy()
@@ -73,4 +83,6 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+
 }
