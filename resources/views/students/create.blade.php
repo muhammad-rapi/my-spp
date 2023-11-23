@@ -124,7 +124,10 @@
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
                     </div>
                 </form>
-
+                <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
+                        <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
+                        Kembali
+                    </a>
             </div>
         </div>
     </div>

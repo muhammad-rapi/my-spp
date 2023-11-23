@@ -42,7 +42,7 @@
                                 Diubah Oleh : {{  $payment->updatedBy->name}}
                             </p>                        
                     </div>                
-                    <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='/list-payment'>
+                    <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
                         <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
                         Kembali
                     </a>
