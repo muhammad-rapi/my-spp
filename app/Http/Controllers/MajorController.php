@@ -26,7 +26,8 @@ class MajorController extends Controller
     public function index()
     {
         $majors = $this->model->sortable()->paginate(25);
-        return view('majors.index', compact('majors'));
+        $count = $this->model->count();
+        return view('majors.index', compact('majors', 'count'));
     }
 
     public function create()

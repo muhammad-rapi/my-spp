@@ -28,7 +28,8 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->model->sortable()->paginate(25);
-        return view('students.index', compact('students'));
+        $count = $this->model->count();
+        return view('students.index', compact('students', 'count'));
     }
 
     public function show(string $id)

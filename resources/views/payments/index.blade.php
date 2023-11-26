@@ -5,6 +5,12 @@
 <div>
 
     <div class="row">
+        <div class="d-flex flex-row justify-content-start mb-3 mx-5 gap-4">
+            <span class="badge badge-pill badge-lg bg-gradient-info p-3">{{  'Jumlah Transaksi = ' . $count }}</span>
+            <span class="badge badge-pill badge-lg bg-gradient-info p-3">
+                {{  'Jumlah Nominal Transaksi = Rp.' }} {{ number_format($sum, 2, ',', '.') }}
+            </span>
+        </div>
         <div class="col-12">
             <div class="card mb-4 mx-3 px-3">
                 <div class="card-header pb-0">
@@ -41,6 +47,9 @@
                                         @sortablelink('month', __('bulan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('status', __('status'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('created_at', __('waktu dibuat'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -72,6 +81,11 @@
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->month }}</p>
+                                    </td>                                
+                                    <td class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">
+                                            <span class="badge bg-gradient-{{$payment->status === 'paid' ? 'success' : 'danger'}}">{{ $payment->status === 'paid ' ? 'Lunas' : 'Belum Lunas' }}</span>
+                                        </p>
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $payment->created_at}}</p>

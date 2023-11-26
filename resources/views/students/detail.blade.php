@@ -29,6 +29,9 @@
                             <p class="card-description mb-2">
                                 Alamat : {{  $student->address}}
                             </p>                        
+                            <p class="card-description mb-2">
+                                Status : <span class="badge bg-gradient-{{$student->status ? 'success' : 'danger'}}">{{ $student->status ? 'Aktif' : 'Tamat' }}</span>
+                            </p>                        
                     </div>             
 
                     <div class="d-flex flex-row justify-content-between m-4">

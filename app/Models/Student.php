@@ -11,6 +11,8 @@ class Student extends Model
     use HasFactory;
     use Sortable;
 
+    const AKTIF = 1;
+    const TAMAT = 0;
     // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
     protected static function booted()
     {

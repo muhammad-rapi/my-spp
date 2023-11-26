@@ -27,7 +27,9 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = $this->model->with('students')->sortable()->paginate(25);
-        return view('payments.index', compact('payments'));
+        $count = $this->model->count();
+        $sum = $this->model->sum('amount_payment');
+        return view('payments.index', compact('payments', 'count', 'sum'));
     }
 
     public function show(string $id)
@@ -44,7 +46,12 @@ class PaymentController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $payment = $this->model->create($request->validated());
+        $validated = $request->validated();
+
+        $validated['status'] = 'paid';
+
+        $payment = $this->model->create($validated);
+        
         event(new PaymentSuccessful($payment));
         return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil Dibuat');
     }

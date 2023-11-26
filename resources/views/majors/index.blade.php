@@ -3,7 +3,9 @@
 @section('content')
 
 <div>
-
+    <div class="d-flex flex-row justify-content-start mb-3 mx-5">
+        <span class="badge badge-pill badge-lg bg-gradient-info p-3">{{  'Jumlah Jurusan = ' . $count }}</span>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-4 px-3">

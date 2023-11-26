@@ -4,6 +4,9 @@
 
 <div>
     <div class="row">
+         <div class="d-flex flex-row justify-content-start mb-3 mx-5">
+            <span class="badge badge-pill badge-lg bg-gradient-info p-3">{{  'Jumlah Siswa = ' . $count }}</span>
+        </div>
         <div class="col-12">
             <div class="card mb-4 mx-3">
                 <div class="card-header pb-0">
@@ -94,7 +97,7 @@
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->address}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <span class="badge bg-gradient-{{$student->status === 1 ? 'success' : 'danger'}}">{{ $student->status === 1 ? 'Aktif' : 'Nonaktif' }}</span>
+                                        <span class="badge bg-gradient-{{$student->status ? 'success' : 'danger'}}">{{ $student->status ? 'Aktif' : 'Tamat' }}</span>
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->created_at}}</p>
