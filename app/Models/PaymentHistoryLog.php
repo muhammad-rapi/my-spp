@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class PaymentHistoryLog extends Model
 {
@@ -11,9 +13,11 @@ class PaymentHistoryLog extends Model
 
 
     // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
-    protected static function booted()
-    {
+    protected static function booted() {
         static::creating(function ($model) {
+            if( !$model->getKey() ) {
+                $model->{$model->getKeyName()} = (string)Str::uuid();
+            }
             $model->created_by = \Auth::id();
             $model->updated_by = \Auth::id();
         });
@@ -22,7 +26,20 @@ class PaymentHistoryLog extends Model
             $model->updated_by = \Auth::id();
         });
     }
-    
+
+    public function getIncrementing() {
+        return false;
+    }
+
+    /**
+     * Get the auto-incrementing key type.
+     *
+     * @return string
+     */
+    public function getKeyType() {
+        return 'string';
+    }
+
 
     protected $table = 'payment_history_logs';
     protected $fillable = [

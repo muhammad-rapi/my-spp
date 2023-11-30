@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('arrears', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id')->after('updated_by');
-            $table->unsignedBigInteger('payment_id')->after('student_id');
+            $table->string('student_id',36)->after('updated_by');
+            $table->string('payment_id',36)->after('student_id');
             $table->string('month')->after('payment_id');
             $table->integer('amount_of_arrears')->after('month');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

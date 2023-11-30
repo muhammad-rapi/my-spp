@@ -84,11 +84,14 @@
                             <div class="form-group">
                                 <label for="major" class="form-control-label">{{ __('Jenis Kelamin') }}</label>
                                 <div class="@error('student.gender')border border-danger rounded-3 @enderror">
-                                    <select name="gender" class="form-select" aria-label="Default select example">
-                                        <option selected>Jenis Kelamin</option>
-                                        <option>{{ 'Pria' }}</option>
-                                        <option>{{ 'Wanita' }}</option>
-                                    </select>
+                                    <label id="gender" class="mx-1">
+                                    <input type="checkbox" name="gender" value="{{ 'Pria' }}" class="mx-1" >
+                                    {{ 'Pria' }}
+                                    </label>
+                                    <label id="gender" class="mx-1">
+                                    <input type="checkbox" name="gender" value="{{ 'Wanita' }}" class="mx-1" >
+                                    {{ 'Wanita' }}
+                                    </label>
                                     @error('student')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
@@ -124,7 +127,7 @@
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
                     </div>
                 </form>
-                <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
+                <a class="text-body text-sm bg-light btn-sm w-20 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
                         <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
                         Kembali
                     </a>

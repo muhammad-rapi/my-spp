@@ -7,10 +7,39 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    const ADMIN_ROLE = 'admin';
+    const OPERATOR_ROLE = 'operator';
+    const HEADMASTER_ROLE = 'headmaster';
+
+    protected static function booted() {
+        static::creating(function ($model) {
+            if( !$model->getKey() ) {
+                $model->{$model->getKeyName()} = (string)Str::uuid();
+            }
+        });
+
+    }
+
+    public function getIncrementing() {
+        return false;
+    }
+
+    /**
+     * Get the auto-incrementing key type.
+     *
+     * @return string
+     */
+    public function getKeyType() {
+        return 'string';
+    }
+
 
     /**
      * The attributes that are mass assignable.

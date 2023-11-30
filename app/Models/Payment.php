@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Str;
+
 
 class Payment extends Model
 {
-    use HasFactory;
-    use Sortable;
+    use HasFactory, Sortable;
 
     // jenis status pembayaran
     const PAID = 'paid';
     const UNPAID = 'unpaid';
 
     // menambahkan event jika data berhasil dibuat maka data created_by atau updated_by bisa diisi
-    protected static function booted()
-    {
+    protected static function booted() {
         static::creating(function ($model) {
+            if( !$model->getKey() ) {
+                $model->{$model->getKeyName()} = (string)Str::uuid();
+            }
             $model->created_by = \Auth::id();
             $model->updated_by = \Auth::id();
         });
@@ -28,11 +31,25 @@ class Payment extends Model
         });
     }
 
+    public function getIncrementing() {
+        return false;
+    }
+
+    /**
+     * Get the auto-incrementing key type.
+     *
+     * @return string
+     */
+    public function getKeyType() {
+        return 'string';
+    }
+
     public $sortable = [
         'id',
         'student_id',
         'amount_payment',
-        'month',      
+        'month',     
+        'year',
         'created_by',
         'updated_by',
         'created_at',
@@ -45,7 +62,8 @@ class Payment extends Model
         'student_id',
         'amount_payment',
         'month',
-        'status'
+        'year',
+        'status',
     ];
 
     protected $casts = [
@@ -53,6 +71,7 @@ class Payment extends Model
         'student_id' => 'string',
         'amount_payment' => 'integer',
         'month' => 'string',
+        'year' => 'string',
         'status' => 'string'
     ];
 

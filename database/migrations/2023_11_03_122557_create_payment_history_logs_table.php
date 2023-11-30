@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payment_history_logs', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('payment_id')->unsigned()->index();
+            $table->uuid('id')->primary();
+            $table->string('payment_id',36)->index();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->string('notes')->nullable;
             $table->timestamps();

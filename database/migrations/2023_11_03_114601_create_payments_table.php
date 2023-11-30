@@ -13,8 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('student_id')->unsigned()->index();
+            $table->uuid('id')->primary();
+            $table->string('student_id',36)->index();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->integer('amount_payment');
             $table->date('month');

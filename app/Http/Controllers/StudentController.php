@@ -28,8 +28,13 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->model->sortable()->paginate(25);
+
+        $isAdmin = USER::ADMIN_ROLE;
+
+        $isOperator = USER::OPERATOR_ROLE;
+
         $count = $this->model->count();
-        return view('students.index', compact('students', 'count'));
+        return view('students.index', compact('students', 'count', 'isAdmin', 'isOperator'));
     }
 
     public function show(string $id)
@@ -37,7 +42,10 @@ class StudentController extends Controller
         $student = $this->model->findOrFail($id);
         $payments = $this->payment->where('student_id', $id)->sortable()->get();
 
-        return view('students.detail',compact('student', 'payments'));
+        $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+        return view('students.detail',compact('student', 'payments', 'months'));
     }
 
     public function create()

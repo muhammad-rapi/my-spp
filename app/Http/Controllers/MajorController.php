@@ -20,6 +20,9 @@ class MajorController extends Controller
     public function __construct(Major $model)
     {
         $this->model = $model;
+        $this->middleware('except_role:'.implode(',', [
+            User::ADMIN_ROLE,
+        ]))->only(['store', 'update', 'destroy', 'index', 'create', 'edit']);
     }
 
 

@@ -34,15 +34,7 @@
                         </div>
                     @endif
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="student_id" class="form-control-label">{{ __('Nama Siswa') }}</label>
-                                <div class="@error('student.id')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Nama Siswa" id="name" name="name" value="">
-                                    @error('name')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                        <div class="col-md-12">                        
                                 <div class="@error('student.id')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="hidden" id="student_id" name="student_id" value="{{ $student_id }}">
                                     @error('name')
@@ -56,7 +48,7 @@
                             <div class="form-group">
                                 <label for="amount_payment" class="form-control-label">{{ __('Nominal Pembayaran') }}</label>
                                 <div class="@error('student.amount_payment')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="number" placeholder="Nominal Pembayaran" id="amount_payment" name="amount_payment">
+                                    <input class="form-control" type="number" placeholder="Nominal Pembayaran" id="amount_payment" name="amount_payment" value="{{ 75000 }}">
                                         @error('amount_payment')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror                                        
@@ -64,12 +56,34 @@
                             </div>
                         </div>
                     <div class="row">
+                        <div class="col-md-12">                           
+                            <div class="form-group">
+                                <label for="month" class="form-control-label">{{ __('Bulan') }}</label>
+                                <div class="@error('student.month') border border-danger rounded-3 @enderror">
+                                    @foreach($months as $month)
+                                    <label id="month" class="mx-1">
+                                    <input type="checkbox" name="month[]" value="{{ $month['name'] }}" class="mx-1" >
+                                    {{ $month['name'] }}
+                                    </label>
+                                    @endforeach
+                                @error('month')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="class" class="form-control-label">{{ __('Bulan') }}</label>
+                                <label for="class" class="form-control-label">{{ __('Tahun') }}</label>
                                 <div class="@error('student.month')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" id="month" name="month" placeholder="Masukkan Bulan dan Tahun">
-                                        @error('month')
+                                    <select name="year" class="form-select" aria-label="Default select example">
+                                        <option selected>Pilih Tahun</option>
+                                        @foreach($years as $year)
+                                        <option value="{{ $year }}">{{ $year }}</option>
+                                        @endforeach
+                                    </select>
+                                        @error('year')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror                                        
                                 </div>
@@ -80,7 +94,7 @@
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
                     </div>
                 </form>
-                <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
+                <a class="text-body text-sm bg-light btn-sm w-20 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
                         <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
                         Kembali
                     </a>

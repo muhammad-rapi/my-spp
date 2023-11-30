@@ -20,6 +20,7 @@ class Store extends FormRequest
             'amount_payment.required'     => 'Nominal  Pembayaran Tidak Boleh Kosong',
             'student_id.required' => 'Siswa Tidak Boleh Kosong',
             'month.required' => 'Bulan Tidak Boleh Kosong',
+            'year.required' => 'Tahun Tidak Boleh Kosong',
         ];
     }
 
@@ -32,8 +33,10 @@ class Store extends FormRequest
     {
         return[
             'amount_payment'     => 'required',
-            'student_id' => 'required|max:5',
-            'month' => 'required'
+            'student_id' => 'required',
+            'month.*'        => 'in:January,February,March,April,May,June,July,August,September,October,November,December', 
+            'month' => 'required',
+            'year' => 'required'
         ];
 
     }

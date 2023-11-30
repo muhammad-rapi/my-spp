@@ -30,6 +30,9 @@
                                 Bulan : {{  $payment->month}}
                             </p>
                             <p class="card-description mb-4">
+                                Tahun : {{  $payment->year}}
+                            </p>
+                            <p class="card-description mb-4">
                                 Waktu Dibuat : {{  $payment->created_at}}
                             </p>
                             <p class="card-description mb-4">
