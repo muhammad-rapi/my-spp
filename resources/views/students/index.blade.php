@@ -100,11 +100,11 @@
                                         <span class="badge bg-gradient-{{$student->status ? 'success' : 'danger'}}">{{ $student->status ? 'Aktif' : 'Tamat' }}</span>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $student->created_at}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{ date_format($student->created_at,"d-m-Y H:i")}} WIB</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $student->updated_at}}</p>
-                                    </td>                                
+                                        <p class="text-sm font-weight-bold mb-0">{{ date_format($student->updated_at,"d-m-Y H:i")}} WIB</p>     
+                                   </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->createdBy->name}}</p>
                                     </td>                                
@@ -118,10 +118,10 @@
                                                 <i class="fas fa-edit fa-lg" style="color:#fb8c00"></i>
                                             </a>                                        
                                             <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>     
-                                            @if($isOperator)
+                                            @if(!Auth::user()->hasRole('operator'))
                                             <a class="btn bg-gradient-success btn-xs " href="{{ route('payment.create', ['student_id' => $student->id]) }}" >
                                                 Bayar
-                                            </a>          
+                                            </a>
                                             @endif
                                         </div>
                                     </td>                                   

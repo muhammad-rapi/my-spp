@@ -6,13 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Sortable;
 
     const ADMIN_ROLE = 'admin';
     const OPERATOR_ROLE = 'operator';
@@ -40,19 +41,30 @@ class User extends Authenticatable
         return 'string';
     }
 
+    public function hasRole($role_name) {
+        return $this->role == $role_name;
+    }
+
+
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
+    protected $sortable = [
+        'name',
+        'email',
+        'password',
+        'role',
+        'phone',
+    ];
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
         'phone',
-        'location',
-        'about_me',
     ];
 
     /**

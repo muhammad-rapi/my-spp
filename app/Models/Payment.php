@@ -8,8 +8,7 @@ use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Str;
 
 
-class Payment extends Model
-{
+class Payment extends Model {
     use HasFactory, Sortable;
 
     // jenis status pembayaran
@@ -48,7 +47,7 @@ class Payment extends Model
         'id',
         'student_id',
         'amount_payment',
-        'month',     
+        'month',
         'year',
         'created_by',
         'updated_by',
@@ -67,29 +66,27 @@ class Payment extends Model
     ];
 
     protected $casts = [
-        'id' => 'string',
-        'student_id' => 'string',
+        'id'             => 'string',
+        'student_id'     => 'string',
         'amount_payment' => 'integer',
-        'month' => 'string',
-        'year' => 'string',
-        'status' => 'string'
+        'month'          => 'string',
+        'year'           => 'string',
+        'status'         => 'string'
     ];
 
+
     // relasi dari table student
-    public function students()
-    {
+    public function students() {
         return $this->belongsTo(Student::class, 'student_id', 'id');
-    }   
+    }
 
     // menambahkan created_by
-    public function createdBy()
-    {
+    public function createdBy() {
         return $this->belongsTo(User::class, 'created_by');
     }
 
     // menambahkan updated_by
-    public function updatedBy()
-    {
+    public function updatedBy() {
         return $this->belongsTo(User::class, 'updated_by');
     }
 }

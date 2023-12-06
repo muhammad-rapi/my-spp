@@ -17,12 +17,27 @@
                     <div class="card">
                         <div class="card-body pt-3">
                             <div class="avatar avatar-xxl position-relative">
-                                <img src="../assets/img/profile-picture/admin.png" alt="..." class="w-100 rounded-circle shadow-sm">                                                     
+                                @php
+                                    $roleImages = [
+                                        'admin' => '../assets/img/profile-picture/admin.png',
+                                        'operator' => '../assets/img/profile-picture/operator.png',
+                                        'headmaster' => '../assets/img/profile-picture/headmaster.png',
+                                    ];
+                                @endphp
+
+                            @foreach($roleImages as $role => $imagePath)
+                                @if(Auth::user()->hasRole($role))
+                                    <img src="{{ $imagePath }}" alt="..." class="w-100 rounded-circle shadow-sm">
+                                @endif
+                            @endforeach
                             </div>
                             @if(Auth::check())
                             <p class="card-title h5 d-block text-darker mt-2 mb-3">
                                 {{  Auth::user()->name}}
-                            </p>                           
+                            </p>                             
+                            <p class="card-description mb-4">
+                                Role : <span class="badge bg-gradient-success font-weight-bold mb-0">{{ Auth::user()->role }}</span>
+                            </p>
                             <p class="card-description mb-4">
                                 Email : {{   Auth::user()->email }}
                             </p>

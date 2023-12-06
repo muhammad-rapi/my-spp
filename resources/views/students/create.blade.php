@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div>
     <div class="container-fluid">
 
@@ -18,7 +17,8 @@
                     @if($errors->any())
                         <div class="mt-3  alert alert-primary alert-dismissible fade show" role="alert">
                             <span class="alert-text text-white">
-                            {{$errors->first()}}</span>
+                                {{ $errors->first() }}
+                            </span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                 <i class="fa fa-close" aria-hidden="true"></i>
                             </button>
@@ -27,7 +27,8 @@
                     @if(session('success'))
                         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
                             <span class="alert-text text-white">
-                            {{ session('success') }}</span>
+                                {{ session('success') }}
+                            </span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                 <i class="fa fa-close" aria-hidden="true"></i>
                             </button>
@@ -39,12 +40,13 @@
                                 <label for="student-name" class="form-control-label">{{ __('Nama') }}</label>
                                 <div class="@error('student.name')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="Nama Siswa" id="student-name" name="name">
-                                        @error('name')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                    @error('name')
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -53,13 +55,14 @@
                                     <select name="major_id" class="form-select" aria-label="Default select example">
                                         <option selected>Pilih Jurusan</option>
                                         @foreach($majors as $major)
-                                        <option value="{{ $major->id }}">{{ $major->name }}</option>
+                                            <option value="{{ $major->id }}">{{ $major->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('major')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -73,29 +76,35 @@
                                         <option>XI</option>
                                         <option>XII</option>
                                     </select>
-                                        @error('class')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror                                        
+                                    @error('class')
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="major" class="form-control-label">{{ __('Jenis Kelamin') }}</label>
                                 <div class="@error('student.gender')border border-danger rounded-3 @enderror">
-                                    <label id="gender" class="mx-1">
-                                    <input type="checkbox" name="gender" value="{{ 'Pria' }}" class="mx-1" >
-                                    {{ 'Pria' }}
-                                    </label>
-                                    <label id="gender" class="mx-1">
-                                    <input type="checkbox" name="gender" value="{{ 'Wanita' }}" class="mx-1" >
-                                    {{ 'Wanita' }}
-                                    </label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="pria" value="Pria" checked>
+                                        <label class="form-check-label" for="pria">
+                                            {{ __('Pria') }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="wanita" value="Wanita">
+                                        <label class="form-check-label" for="wanita">
+                                            {{ __('Wanita') }}
+                                        </label>
+                                    </div>
                                     @error('student')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -104,37 +113,37 @@
                                 <label for="nis" class="form-control-label">{{ __('NIS') }}</label>
                                 <div class="@error('student.nis')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="NIS" id="nis" name="nis">
-                                        @error('nis')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror                                        
+                                    @error('nis')
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="class" class="form-control-label">{{ __('Alamat') }}</label>
                                 <div class="@error('student.address')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="Alamat" id="address" name="address">
-                                        @error('address')
-                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror                                        
+                                    @error('address')
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
                     </div>
                 </form>
                 <a class="text-body text-sm bg-light btn-sm w-20 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
-                        <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
-                        Kembali
-                    </a>
+                    <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
+                    Kembali
+                </a>
             </div>
         </div>
     </div>
 </div>
-
 
 @endsection

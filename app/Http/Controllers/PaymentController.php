@@ -23,6 +23,9 @@ class PaymentController extends Controller
     {
         $this->model = $model;
         $this->student = $student;
+        $this->middleware('except_role:'.implode(',', [
+            User::OPERATOR_ROLE,
+        ]))->only(['store', 'update', 'destroy', 'index', 'create', 'edit']);
     }
 
     public function index()
@@ -88,6 +91,7 @@ class PaymentController extends Controller
         return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil Dibuat');
     }
 
+    
 
     public function edit(string $id)
     {

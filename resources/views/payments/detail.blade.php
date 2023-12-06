@@ -33,11 +33,11 @@
                                 Tahun : {{  $payment->year}}
                             </p>
                             <p class="card-description mb-4">
-                                Waktu Dibuat : {{  $payment->created_at}}
-                            </p>
+                                Waktu Dibuat : {{ date_format($payment->created_at,"d-m-Y H:i")}} WIB
+                            </p>                    
                             <p class="card-description mb-4">
-                                Waktu Diubah : {{  $payment->updated_at}}
-                            </p>                        
+                                Waktu Diubah : {{ date_format($payment->updated_at,"d-m-Y H:i")}} WIB
+                            </p>                    
                             <p class="card-description mb-4">
                                 Dibuat Oleh : {{  $payment->createdBy->name}}
                             </p>                        

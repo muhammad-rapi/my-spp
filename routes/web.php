@@ -11,6 +11,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ArrearController;
+use App\Http\Controllers\UserController;
 use App\Models\Arrears;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -38,7 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 	// User Series
 	Route::get('/profile', [ProfilController::class, 'index']);
 	Route::get('/logout', [SessionsController::class, 'destroy']);
-	
+	Route::get('list-user', [UserController::class, 'index']);
+	Route::resource('users', UserController::class);
+	Route::get('create-user', [UserController::class, 'create']);
 
 	
 	// Major Series
@@ -68,11 +71,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('edit-arrear/{id}', [ArrearController::class, 'edit']);
 	Route::get('arrears/{id}', [ArrearController::class, 'show']);
 
+
+	
+
 	// Account Login
 	Route::get('/login', function () {
 		return view('dashboard');
 	})->name('sign-up');
 });
+
 
 
 // Guest Login

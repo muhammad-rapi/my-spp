@@ -89,8 +89,8 @@
                                         <p class="text-sm font-weight-bold mb-0">Rp.{{ number_format($payment->amount_payment, 2, ',', '.') }}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <p class="text-sm font-weight-bold mb-0">{{ $payment->created_at}}</p>
-                                    </td>                                                                 
+                                        <p class="text-sm font-weight-bold mb-0">{{ date_format($payment->created_at,"d-m-Y H:i")}} WIB</p>
+                                    </td>                                                                     
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">
                                             <span class="badge bg-gradient-{{$payment->status == 'paid' ? 'success' : 'danger'}}">{{ $payment->status == 'paid' ? 'Lunas' : 'Belum Lunas' }}</span>

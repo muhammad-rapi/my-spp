@@ -55,6 +55,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">                           
                             <div class="form-group">
@@ -69,6 +70,7 @@
                                 @error('month')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                 @enderror
+                                </div>
                             </div>
                         </div>
                     </div>       

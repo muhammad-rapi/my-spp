@@ -20,7 +20,7 @@ class Store extends FormRequest
             'name.required'     => 'Nama Siswa Tidak Boleh Kosong',
             'name.max' => 'Nama Siswa Tidak Boleh Lebih Dari 50 Karakter',
             'major_id.required' => 'Jurusan Wajib Dipilih',
-            'class.required' => 'Kelas Tidak Boleh Kosong',
+            'class.required' => 'Kelas Wajib Dipilih',
             'nis.required' => 'NIS Tidak Boleh Kosong',
             'nis.max' => 'NIS Tidak Boleh Lebih Dari 5 Karakter',
             'nis.unique' => 'NIS Yang Digunakan Sudah Terdaftar',
@@ -39,7 +39,7 @@ class Store extends FormRequest
         return[
             'name'     => 'required|max:225',
             'major_id' => 'required',
-            'class'    => 'required',
+            'class'    => 'required|in:X,XI,XII',
             'nis'      => 'required|max:25|unique:students',
             'address'  => 'required|max:225',
             'gender'  => 'max:11'
