@@ -33,6 +33,7 @@ class Arrear extends Model
         'student_id',
         'payment_id',
         'month',
+        'year',
         'amount_of_arrears',
         'created_by',
         'updated_by',
@@ -45,19 +46,21 @@ class Arrear extends Model
         'student_id',
         'payment_id',
         'month',
+        'year',
         'amount_of_arrears',
         'created_by',
         'updated_by',
     ];
 
     protected $casts = [
-        'id'         => 'string',
-        'student_id'         => 'string',
-        'payment_id'         => 'string',
-        'created_by' => 'string',
-        'updated_by' => 'string',
-        'month'       => 'string',
-        'amount_of_arrears'   => 'integer'
+        'id'                => 'string',
+        'student_id'        => 'string',
+        'payment_id'        => 'string',
+        'created_by'        => 'string',
+        'updated_by'        => 'string',
+        'month'             => 'string',
+        'year'             => 'string',
+        'amount_of_arrears' => 'integer'
     ];
 
     // relasi dari table students

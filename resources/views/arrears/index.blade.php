@@ -41,6 +41,9 @@
                                         @sortablelink('month', __('bulan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        @sortablelink('year', __('tahun'))
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         @sortablelink('amount_of_arrears', __('jumlah tagihan'))
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">

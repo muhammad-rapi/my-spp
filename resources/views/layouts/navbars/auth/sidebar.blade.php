@@ -27,9 +27,9 @@
             <span class="nav-link-text ms-1"> Jurusan</span>
           </a>
           <div class="collapse" id="jurusanCollapse">
-            <ul class="nav flex-column list-unstyled">
-              <li class="nav-item ml-5">
-                <a class="nav-link {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}">Tambah Jurusan</a>
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;" style="margin-left:40px;">
+              <li class="nav-item ">
+                <a class="nav-link  {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}">Tambah Jurusan</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-major') ? 'active' : '') }}" href="{{ url('list-major') }}">List Jurusan</a>
@@ -47,7 +47,7 @@
             <span class="nav-link-text ms-1"> Siswa</span>
           </a>
           <div class="collapse" id="siswaCollapse">
-            <ul class="nav flex-column list-unstyled">
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;" style="margin-left:40px;">
               @if(Auth::user()->role != 'admin')
               <li class="nav-item ml-5">
                 <a class="nav-link {{ (Request::is('create-student') ? 'active' : '') }}" href="{{ url('create-student') }}">Tambah Siswa</a>
@@ -69,7 +69,7 @@
             <span class="nav-link-text ms-1"> Pembayaran</span>
           </a>
           <div class="collapse" id="pembayaranCollapse">
-            <ul class="nav flex-column list-unstyled">
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-payment') ? 'active' : '') }}" href="{{ url('list-payment') }}">List Pembayaran</a>
               </li>
@@ -84,12 +84,12 @@
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <i style="font-size: 1rem;" class="fas fa-lg fa-file-invoice ps-2 pe-2 text-center text-dark" aria-hidden="true"></i>
             </div>
-            <span class="nav-link-text ms-1"> Tagihan</span>
+            <span class="nav-link-text ms-1"> Tunggakan</span>
           </a>
           <div class="collapse" id="tagihanCollapse">
-            <ul class="nav flex-column list-unstyled">
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
               <li class="nav-item">
-                <a class="nav-link {{ (Request::is('list-arrear') ? 'active' : '') }}" href="{{ url('list-arrear') }}">List Tagihan</a>
+                <a class="nav-link {{ (Request::is('list-arrear') ? 'active' : '') }}" href="{{ url('list-arrear') }}">List Tunggakan</a>
               </li>
             </ul>
           </div>
@@ -105,7 +105,7 @@
             <span class="nav-link-text ms-1"> Pengguna</span>
           </a>
           <div class="collapse" id="userColapse">
-            <ul class="nav flex-column list-unstyled">
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
               <li class="nav-item ml-5">
                 <a class="nav-link {{ (Request::is('create-user') ? 'active' : '') }}" href="{{ url('create-user') }}">Tambah Pengguna</a>
               </li>
@@ -126,9 +126,9 @@
             <span class="nav-link-text ms-1"> Laporan</span>
           </a>
           <div class="collapse" id="userColapse">
-            <ul class="nav flex-column list-unstyled">
-              <li class="nav-item ml-5">
-                <a class="nav-link {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}">Tambah Jurusan</a>
+            <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
+              <li class="nav-item" >
+                <a class="nav-link {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}" >Tambah Jurusan</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-major') ? 'active' : '') }}" href="{{ url('list-major') }}">List Jurusan</a>

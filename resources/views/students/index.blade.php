@@ -14,7 +14,9 @@
                         <div>
                             <h5 class="mb-0">List Siswa</h5>
                         </div>
-                        <a href="/create-student" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Siswa</a>
+                        @if(Auth::user()->hasRole('operator') && Auth::user()->hasRole('headmaster'))
+                            <a href="/create-student" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Siswa</a>
+                        @endif
                     </div>
                     @if(session('success'))
                         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
@@ -113,11 +115,15 @@
                                     </td>                                
                                     <td class="text-center position-sticky end-0 bg-body">
                                         <div class="d-flex gap-4 justify-content-between">
-                                            <a href="/students/{{ $student->id }}" class=" mt-2 mb-2 "><i class="fas fa-search-plus fa-lg" style="color: #03a9f4"></i></a>
+                                            <a href="/students/{{ $student->id }}" class=" mt-2 mb-2 ">
+                                                {{ !Auth::user()->hasRole('admin') ? Detail :  }}
+                                            </a>
+                                            @if(!Auth::user()->hasRole('admin'))
                                             <a href="/edit-student/{{ $student->id }}" class="mt-2 mb-2">
                                                 <i class="fas fa-edit fa-lg" style="color:#fb8c00"></i>
                                             </a>                                        
-                                            <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>     
+                                            <a class=" mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $student->id }}"><i class="far fa-trash-alt fa-lg" style="color: #f44335"></i></a>   
+                                            @endif  
                                             @if(!Auth::user()->hasRole('operator'))
                                             <a class="btn bg-gradient-success btn-xs " href="{{ route('payment.create', ['student_id' => $student->id]) }}" >
                                                 Bayar
