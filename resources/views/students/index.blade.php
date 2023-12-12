@@ -14,7 +14,7 @@
                         <div>
                             <h5 class="mb-0">List Siswa</h5>
                         </div>
-                        @if(Auth::user()->hasRole('operator') && Auth::user()->hasRole('headmaster'))
+                        @if(Auth::user()->hasRole('operator') || Auth::user()->hasRole('headmaster'))
                             <a href="/create-student" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah Siswa</a>
                         @endif
                     </div>
@@ -99,7 +99,7 @@
                                         <p class="text-sm font-weight-bold mb-0">{{ $student->address}}</p>
                                     </td>                                
                                     <td class="text-center">
-                                        <span class="badge bg-gradient-{{$student->status ? 'success' : 'danger'}}">{{ $student->status ? 'Aktif' : 'Tamat' }}</span>
+                                        <span class="badge bg-gradient-{{$student->status ? 'success' : 'danger'}}">{{ $student->status ? 'Aktif' : 'Non Aktif' }}</span>
                                     </td>                                
                                     <td class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">{{ date_format($student->created_at,"d-m-Y H:i")}} WIB</p>
@@ -116,7 +116,7 @@
                                     <td class="text-center position-sticky end-0 bg-body">
                                         <div class="d-flex gap-4 justify-content-between">
                                             <a href="/students/{{ $student->id }}" class=" mt-2 mb-2 ">
-                                                {{ !Auth::user()->hasRole('admin') ? Detail :  }}
+                                                <i class="fas fa-search-plus fa-lg" style="color:#03a9f4"></i>
                                             </a>
                                             @if(!Auth::user()->hasRole('admin'))
                                             <a href="/edit-student/{{ $student->id }}" class="mt-2 mb-2">

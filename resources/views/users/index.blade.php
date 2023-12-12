@@ -73,7 +73,7 @@
                                             <p class="text-sm font-weight-bold mb-0">{{ $user->email }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ $user->phone ? $user->phone : '-' }}</p>
+                                            <p class="text-sm font-weight-bold mb-0">{{ isset($user->phone) ? $user->phone : '-' }}</p>
                                         </td>                                
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0">{{ date_format($user->created_at,"d-m-Y H:i")}} WIB</p>   

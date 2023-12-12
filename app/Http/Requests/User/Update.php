@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Update extends FormRequest
@@ -17,10 +18,10 @@ class Update extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'     => 'Nama Jurusan Tidak Boleh Kosong',
-            'name.max'          => 'Nama Jurusan Tidak Boleh Lebih Dari 50 Karakter',
-            'category.required' => 'Kategori Jurusan Tidak Boleh Kosong',
-            'category.max'      => 'Kategori Jurusan Tidak Boleh Lebih Dari 50 Karakter',
+            'name.required'     => 'Nama Pengguna Tidak Boleh Kosong',
+            'role.required'     => 'Pengguna Wajib Dipilih',
+            'email.required'    => 'Email Tidak Boleh Kosong',
+            'phone.min'         => 'No Hp Terlalu Pendek',
         ];
     }
 
@@ -33,8 +34,11 @@ class Update extends FormRequest
     {
         return [
             'name'     => 'required|max:50',
-            'category' => 'required|max:50',
+            'role'     => 'required|in:admin,operator',
+            'email'    => 'required|max:50',
+            'phone'    => 'nullable|min:12',
         ];
     }
+
 
 }

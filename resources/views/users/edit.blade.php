@@ -11,7 +11,7 @@
                 <h6 class="mb-0">{{ __('Profile Information') }}</h6>
             </div>
             <div class="card-body pt-4 p-3">
-                <form action="{{ route('majors.update', ['major' => $major->id]) }}" method="POST" role="form text-left">
+                <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" role="form text-left">
                     
                     @csrf
                     @method('PATCH')
@@ -36,25 +36,52 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="major-name" class="form-control-label">{{ __('Name') }}</label>
-                                <div class="@error('major.name')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Name" value="{{ $major->name }}" id="major-name" name="name">
+                                <label for="user-role" class="form-control-label">{{ __('Role') }}</label>
+                                <div class="@error('user.role')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="text" placeholder="Role" value="{{ $user->role }}" id="user-role" name="role">
+                                        @error('role')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="user-name" class="form-control-label">{{ __('Name') }}</label>
+                                <div class="@error('user.name')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="text" placeholder="Name" value="{{ $user->name }}" id="user-name" name="name">
                                         @error('name')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="category" class="form-control-label">{{ __('Category') }}</label>
-                                <div class="@error('major.category')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" type="text" placeholder="Category" value="{{ $major->category }}" id="category" name="category">
-                                        @error('category')
+                                <label for="user-email" class="form-control-label">{{ __('Email') }}</label>
+                                <div class="@error('user.email')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="email" placeholder="Email" value="{{ $user->email }}" id="user-email" name="email">
+                                        @error('email')
                                             <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="user-phone" class="form-control-label">{{ __('No Hp') }}</label>
+                                <div class="@error('user.phone')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="number" placeholder="No Hp" value="{{ isset($user->phone) ? $user->phone : '-'  }}" id="user-phone" name="phone">
+                                        @error('phone')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
                                 </div>
                             </div>
                         </div>

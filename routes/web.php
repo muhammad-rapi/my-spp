@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/profile', [ProfilController::class, 'index']);
 	Route::get('/logout', [SessionsController::class, 'destroy']);
 	Route::get('list-user', [UserController::class, 'index']);
+	Route::get('edit-user/{id}', [UserController::class, 'edit']);
 	Route::resource('users', UserController::class);
 	Route::get('create-user', [UserController::class, 'create']);
 
