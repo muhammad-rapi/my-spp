@@ -29,17 +29,6 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            [
-                'id' => (string)Str::uuid(),
-                'name' => 'head master',
-                'email' => 'headmaster@myspp.com',
-                'password' => Hash::make('password'),
-                'phone' => '',
-                'gender' => 'Pria',
-                'role' => 'headmaster',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
         ];
 
 

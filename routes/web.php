@@ -11,6 +11,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ArrearController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\UserController;
 use App\Models\Arrears;
 use Illuminate\Http\Request;
@@ -73,7 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('arrears/{id}', [ArrearController::class, 'show']);
 
 
-	
+	// Reset Password
+	Route::patch('password/edit', [ResetPasswordController::class, 'update'])->name('password.edit');
+
 
 	// Account Login
 	Route::get('/login', function () {
@@ -85,19 +88,13 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Guest Login
 Route::group(['middleware' => 'guest'], function () {
-	Route::get('/register', [RegisterController::class, 'create']);
-	Route::post('/register', [RegisterController::class, 'store']);
 	Route::get('/login', [SessionsController::class, 'create']);
 	Route::post('/session', [SessionsController::class, 'store']);
-	Route::get('/login/forgot-password', [ResetController::class, 'create']);
-	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
-	Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
-	Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
-
 });
 
 Route::get('/login', function () {
 	return view('session/login-session');
 })->name('login');
 
+// Home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

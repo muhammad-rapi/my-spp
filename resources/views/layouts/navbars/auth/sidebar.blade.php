@@ -28,11 +28,11 @@
           </a>
           <div class="collapse" id="jurusanCollapse">
             <ul class="nav flex-column list-unstyled"  style="margin-left:40px;" style="margin-left:40px;">
-              <li class="nav-item ">
-                <a class="nav-link  {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}">Tambah Jurusan</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-major') ? 'active' : '') }}" href="{{ url('list-major') }}">List Jurusan</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link  {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}">Tambah Jurusan</a>
               </li>
             </ul>
           </div>
@@ -48,14 +48,14 @@
           </a>
           <div class="collapse" id="siswaCollapse">
             <ul class="nav flex-column list-unstyled"  style="margin-left:40px;" style="margin-left:40px;">
-              @if(Auth::user()->role != 'admin')
-              <li class="nav-item ml-5">
-                <a class="nav-link {{ (Request::is('create-student') ? 'active' : '') }}" href="{{ url('create-student') }}">Tambah Siswa</a>
-              @endif
-              </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-student') ? 'active' : '') }}" href="{{ url('list-student') }}">List Siswa</a>
               </li>
+              @if(Auth::user()->role != 'admin')
+              <li class="nav-item ml-5">
+                <a class="nav-link {{ (Request::is('create-student') ? 'active' : '') }}" href="{{ url('create-student') }}">Tambah Siswa</a>
+              </li>
+              @endif
             </ul>
           </div>
         </li>
@@ -106,11 +106,11 @@
           </a>
           <div class="collapse" id="userColapse">
             <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
-              <li class="nav-item ml-5">
-                <a class="nav-link {{ (Request::is('create-user') ? 'active' : '') }}" href="{{ url('create-user') }}">Tambah Pengguna</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-user') ? 'active' : '') }}" href="{{ url('list-user') }}">List Pengguna</a>
+              </li>
+              <li class="nav-item ml-5">
+                <a class="nav-link {{ (Request::is('create-user') ? 'active' : '') }}" href="{{ url('create-user') }}">Tambah Pengguna</a>
               </li>
             </ul>
           </div>
@@ -127,11 +127,11 @@
           </a>
           <div class="collapse" id="userColapse">
             <ul class="nav flex-column list-unstyled"  style="margin-left:40px;">
-              <li class="nav-item" >
-                <a class="nav-link {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}" >Tambah Jurusan</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link {{ (Request::is('list-major') ? 'active' : '') }}" href="{{ url('list-major') }}">List Jurusan</a>
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link {{ (Request::is('create-major') ? 'active' : '') }}" href="{{ url('create-major') }}" >Tambah Jurusan</a>
               </li>
             </ul>
           </div>
