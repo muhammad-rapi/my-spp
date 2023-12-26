@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Str;
 
-
 class Student extends Model
 {
     use HasFactory, Sortable;
@@ -107,7 +106,5 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
-
-
 
 }

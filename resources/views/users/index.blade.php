@@ -76,11 +76,17 @@
                                             <p class="text-sm font-weight-bold mb-0">{{ isset($user->phone) ? $user->phone : '-' }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ date_format($user->created_at,"d-m-Y H:i")}} WIB</p>   
+                                            <p class="text-sm font-weight-bold mb-0">
+                                                {{ $user->created_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
+                                            </p>                         
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ date_format($user->updated_at,"d-m-Y H:i")}} WIB</p>   
-                                        </td>                                
+                                            <p class="text-sm font-weight-bold mb-0"> 
+                                                {{ $user->updated_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
+                                            </p>
+                                        </td>                              
                                         {{-- <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0">{{ $user->createdBy->name }}</p>
                                         </td>                                

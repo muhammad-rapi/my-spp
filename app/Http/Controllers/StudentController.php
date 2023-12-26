@@ -9,65 +9,94 @@ use App\Models\User;
 use App\Http\Requests\Student\Store as StoreRequest;
 use App\Http\Requests\Student\Update as UpdateRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\View;
+
 
 class StudentController extends Controller
 {
 
-    protected $model, $major, $payment;
+    protected $model, $majorModel, $paymentModel;
 
-    public function __construct(Student $model, Major $major, Payment $payment)
+    public function __construct(Student $model, Major $majorModel, Payment $paymentModel)
     {
         $this->model = $model;
-        $this->major = $major;
-        $this->payment = $payment;
+        $this->majorModel = $majorModel;
+        $this->paymentModel = $paymentModel;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $students = $this->model->sortable()->paginate(25);
+        $students = $this->model->query()->sortable();
 
+        // role pada user
         $isAdmin = USER::ADMIN_ROLE;
-
         $isOperator = USER::OPERATOR_ROLE;
 
-        $count = $this->model->count();
-        return view('students.index', compact('students', 'count', 'isAdmin', 'isOperator'));
+        // membuat filtering
+        $students = $this->applyFilters($students, $request);
+
+        // pagination
+        $students = $students->paginate(25);
+
+        return view('students.index', compact('students', 'isAdmin', 'isOperator', 'request'));
     }
+
+    private function applyFilters($students, Request $request)
+    {
+        return $students->when($request->filled('name'), function ($query) use ($request) {
+            return $query->where('name', 'LIKE', '%' . $request->name . '%');
+        })
+            ->when($request->filled('major'), function ($query) use ($request) {
+                $major = $request->major;
+                return $query->whereHas('major', function ($query) use ($major) {
+                    $query->where('name', 'LIKE', '%' . $major . '%');
+                });
+            })
+            ->when($request->filled('class'), function ($query) use ($request) {
+                return $query->where('class', $request->class);
+            })
+            ->when($request->filled('nis'), function ($query) use ($request) {
+                return $query->where('nis', $request->nis);
+            });
+    }
+
 
     public function show(string $id)
     {
         $student = $this->model->findOrFail($id);
-        $payments = $this->payment->where('student_id', $id)->sortable()->get();
+        $payments = $this->paymentModel->where('student_id', $id)->sortable()->get();
 
         $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-
-        return view('students.detail',compact('student', 'payments', 'months'));
+        return view('students.detail', compact('student', 'payments', 'months'));
     }
 
+    
     public function create()
     {
-        $majors = $this->major->all();
+        $majors = $this->majorModel->all();
 
         return view('students.create', compact('majors'));
     }
 
     public function store(StoreRequest $request)
     {
-        $validated = $request->validated();
+        \DB::beginTransaction();
+        try {
+            $validated = $request->validated();
+            $validated['status'] = 1;
+            $this->model->create($validated);
+            \DB::commit();
+            return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambah');
+        } catch (\Illuminate\Database\QueryException $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Proses Data Gagal Silakan Coba Lagi');
+        }
 
-        $validated['status'] = 1;
-
-        $this->model->create($validated);
-        return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambah');
     }
 
     public function edit(string $id)
     {
-        $major = $this->major->all();
+        $major = $this->majorModel->all();
         $student = $this->model->findOrFail($id);
         return view('students.edit', compact('student', 'major'));
     }
@@ -77,8 +106,15 @@ class StudentController extends Controller
      */
     public function update(UpdateRequest $request, Student $student)
     {
-        $student->update($request->validated());
-        return redirect()->route('students.index')->with('success', 'Siswa berhasil diedit');
+        \DB::beginTransaction();
+        try {
+            $student->update($request->validated());
+            \DB::commit();
+            return redirect()->route('students.index')->with('success', 'Siswa berhasil diedit');
+        } catch (\Illuminate\Database\QueryException $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Proses Data Gagal Silakan Coba Lagi');
+        }
     }
 
     /**
@@ -86,8 +122,14 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->delete();
-        return redirect()->route('students.index')->with('success', 'Siswa berhasil dihapus');
+        try{
+            $student->delete();
+            \DB::commit();
+            return redirect()->route('students.index')->with('success', 'Siswa berhasil dihapus');
+        }catch(\Illuminate\Database\QueryException $e){
+            \DB::commit();
+            return redirect()->route('students.index')->with('error', 'Proses Data Gagal Silakan Coba Lagi');
+        }
     }
 
 }

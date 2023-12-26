@@ -53,9 +53,9 @@
                                 <label for="major" class="form-control-label">{{ __('Jurusan') }}</label>
                                 <div class="@error('major.id')border border-danger rounded-3 @enderror">
                                     <select name="major_id" class="form-select" aria-label="Default select example">
-                                        <option selected>Pilih Jurusan</option>
+                                        <option selected="true" disabled="disabled">Pilih Jurusan</option>
                                         @foreach($majors as $major)
-                                            <option value="{{ $major->id }}">{{ $major->name }}</option>
+                                        <option value="{{ $major->id }}">{{ $major->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('major')
@@ -71,7 +71,7 @@
                                 <label for="class" class="form-control-label">{{ __('Kelas') }}</label>
                                 <div class="@error('student.class')border border-danger rounded-3 @enderror">
                                     <select name="class" class="form-select" aria-label="Default select example">
-                                        <option selected>Pilih Kelas</option>
+                                        <option selected="true" disabled="disabled">Pilih Kelas</option>
                                         <option>X</option>
                                         <option>XI</option>
                                         <option>XII</option>

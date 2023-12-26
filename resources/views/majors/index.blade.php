@@ -3,9 +3,6 @@
 @section('content')
 
 <div>
-    <div class="d-flex flex-row justify-content-start mb-3 mx-5">
-        <span class="badge badge-pill badge-lg bg-gradient-info p-3">{{  'Jumlah Jurusan = ' . $count }}</span>
-    </div>
     <div class="row">
         <div class="col-12">
             <div class="card mb-4 mx-4 px-3">
@@ -19,7 +16,8 @@
                     @if(session('success'))
                         <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
                             <span class="alert-text text-white">
-                            {{ session('success') }}</span>
+                                {{ session('success') }}
+                            </span>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                                 <i class="fa fa-close" aria-hidden="true"></i>
                             </button>
@@ -70,10 +68,16 @@
                                             <p class="text-sm font-weight-bold mb-0">{{ $major->category }}</p>
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ date_format($major->created_at,"d-m-Y H:i")}} WIB</p>                         
+                                            <p class="text-sm font-weight-bold mb-0">
+                                                {{ $major->created_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
+                                            </p>                         
                                         </td>                                
                                         <td class="text-center">
-                                            <p class="text-sm font-weight-bold mb-0">{{ date_format($major->updated_at,"d-m-Y H:i")}} WIB</p>
+                                            <p class="text-sm font-weight-bold mb-0"> 
+                                                {{ $major->updated_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
+                                            </p>
                                         </td>                                
                                         <td class="text-center">
                                             <p class="text-sm font-weight-bold mb-0">{{ $major->createdBy->name }}</p>

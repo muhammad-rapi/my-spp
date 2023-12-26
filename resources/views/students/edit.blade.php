@@ -74,7 +74,7 @@
                                 <label for="major" class="form-control-label">{{ __('Jurusan') }}</label>
                                 <div class="@error('major.id')border border-danger rounded-3 @enderror">
                                     <select name="major_id" class="form-select" aria-label="Default select example">
-                                        <option selected>Pilih Jurusan</option>
+                                        <option selected disabled>Pilih Jurusan</option>
                                         @foreach ($major as $m)                                            
                                         <option value="{{ $m->id }}" @if($m->id == $student->major_id) selected @endif>
                                             {{ $m['name'] }}
@@ -94,7 +94,7 @@
                                 <label for="class" class="form-control-label">{{ __('Kelas') }}</label>
                                 <div class="@error('student.class')border border-danger rounded-3 @enderror">
                                     <select name="class" class="form-select" aria-label="Default select example">
-                                        <option value="" selected>Pilih Kelas</option>
+                                        <option value="" selected disabled>Pilih Kelas</option>
                                         <option value="X" @if($student->class == 'X') selected @endif>X</option>
                                         <option value="XI" @if($student->class == 'XI') selected @endif>XI</option>
                                         <option value="XII" @if($student->class == 'XII') selected @endif>XII</option>
@@ -123,6 +123,27 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
+                                <label for="class" class="form-control-label">{{ __('Status') }}</label>
+                                <div class="@error('student.status')border border-danger rounded-3 @enderror">
+                                    <select name="status" class="form-select" aria-label="Default select example">
+                                        <option selected disabled>Pilih Status</option>
+                                        <option value="1" @if($student->status == '1') selected @endif>    
+                                            Aktif
+                                        </option>                                    
+                                        <option value="0" @if($student->status == '0') selected @endif>    
+                                            Non Aktif
+                                        </option>                                    
+                                    </select>
+                                        @error('status')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror                                        
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label for="class" class="form-control-label">{{ __('Alamat') }}</label>
                                 <div class="@error('student.address')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" value="{{$student->address }}"  placeholder="Alamat" id="address" name="address">
@@ -137,7 +158,7 @@
                         <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
                     </div>
                 </form>
-                <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
+                    <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
                         <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
                         Kembali
                     </a>

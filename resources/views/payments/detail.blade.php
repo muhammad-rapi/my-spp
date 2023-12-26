@@ -33,10 +33,12 @@
                                 Tahun : {{  $payment->year}}
                             </p>
                             <p class="card-description mb-4">
-                                Waktu Dibuat : {{ date_format($payment->created_at,"d-m-Y H:i")}} WIB
+                                Waktu Dibuat :  {{ $payment->created_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
                             </p>                    
                             <p class="card-description mb-4">
-                                Waktu Diubah : {{ date_format($payment->updated_at,"d-m-Y H:i")}} WIB
+                                Waktu Diubah :  {{ $payment->updated_at->addHours(7)->format('d-m-Y H:i') }}
+                                                WIB
                             </p>                    
                             <p class="card-description mb-4">
                                 Dibuat Oleh : {{  $payment->createdBy->name}}
@@ -44,7 +46,7 @@
                             <p class="card-description mb-4">
                                 Diubah Oleh : {{  $payment->updatedBy->name}}
                             </p>                        
-                    </div>                
+                    </div>                 
                     <a class="text-body text-sm bg-light btn-sm w-15 font-weight-bold mb-4 mx-5 icon-move-left mt-auto" href='{{ url()->previous() }}'>
                         <i class="fas fa-arrow-left text-sm ms-1" aria-hidden="true"></i>
                         Kembali

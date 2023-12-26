@@ -38,11 +38,12 @@ class Update extends FormRequest
     {
         return [
             'name'     => 'required|max:225',
-            'major_id' => 'required|max:5',
+            'major_id' => 'required',
             'class'    => 'required|max:5',
             'address'  => 'required|max:225',
             'gender'  => 'max:11',
             'nis'      => 'required|max:25',
+            'status' => 'in:1,0'
         ];
 
     }

@@ -23,23 +23,53 @@ class PaymentController extends Controller
     {
         $this->model = $model;
         $this->student = $student;
-        $this->middleware('except_role:'.implode(',', [
+        $this->middleware('except_role:' . implode(',', [
             User::OPERATOR_ROLE,
         ]))->only(['store', 'update', 'destroy', 'index', 'create', 'edit']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $payments = $this->model->with('students')->sortable()->paginate(25);
-        $count = $this->model->count();
-        $sum = $this->model->sum('amount_payment');
-        return view('payments.index', compact('payments', 'count', 'sum'));
+        $payments = $this->model->query()->sortable();
+
+        // filtering data
+        $payments = $this->applyFilters($payments, $request);
+
+        // pagination
+        $payments = $payments->paginate(25);
+
+        return view('payments.index', compact('payments', 'request'));
     }
+
+
+    // membuat filtering
+    private function applyFilters($payments, Request $request)
+    {
+        return $payments->when($request->filled('student_name'), function ($query) use ($request) {
+            $studentName = $request->student_name;
+            return $query->whereHas('students', function ($query) use ($studentName) {
+                $query->where('name', 'LIKE', '%' . $studentName . '%');
+            });
+        })
+            ->when($request->filled('student_class'), function ($query) use ($request) {
+                $studentClass = $request->student_class;
+                return $query->whereHas('students', function ($query) use ($studentClass) {
+                    $query->where('class', $studentClass );
+                });
+            })
+            ->when($request->filled('month'), function ($query) use ($request) {
+                return $query->where('month', $request->month);
+            })
+            ->when($request->filled('year'), function ($query) use ($request) {
+                return $query->where('year', $request->year);
+            });
+    }
+
 
     public function show(string $id)
     {
         $payment = $this->model->findOrFail($id);
-        return view('payments.detail',compact('payment'));
+        return view('payments.detail', compact('payment'));
     }
 
     public function create($student_id)
@@ -50,12 +80,12 @@ class PaymentController extends Controller
 
         setlocale(LC_TIME, 'id_ID');
 
-        for($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= 12; $i++) {
             $date = Carbon::create(null, $i, 1);
             $months[$i] = [
                 'number'     => $i,
-                'name'       => $date->formatLocalized('%B'), 
-                'short_name' => $date->formatLocalized('%b'), 
+                'name'       => $date->formatLocalized('%B'),
+                'short_name' => $date->formatLocalized('%b'),
             ];
         }
 
@@ -71,12 +101,13 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request) {
+    public function store(StoreRequest $request)
+    {
         $validated = $request->validated();
 
-        $months = $validated['month']; 
+        $months = $validated['month'];
 
-        foreach($months as $selectedMonth) {
+        foreach ($months as $selectedMonth) {
             $payment = $this->model->create([
                 'student_id'     => $validated['student_id'],
                 'amount_payment' => $validated['amount_payment'],
@@ -91,7 +122,7 @@ class PaymentController extends Controller
         return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil Dibuat');
     }
 
-    
+
 
     public function edit(string $id)
     {
@@ -117,5 +148,4 @@ class PaymentController extends Controller
         $payment->delete();
         return redirect()->route('payments.index')->with('success', 'Pembayaran berhasil dihapus');
     }
-
 }
